@@ -1,0 +1,147 @@
+---
+// Íconos SVG inline (estilo Lucide). Decorativo: siempre aria-hidden.
+type Shape =
+  | { t: 'path'; d: string }
+  | { t: 'circle'; cx: number; cy: number; r: number }
+  | { t: 'line'; x1: number; y1: number; x2: number; y2: number };
+
+const { name, size = 24, class: cls = '' } = Astro.props;
+
+const iconos: Record<string, Shape[]> = {
+  check: [{ t: 'path', d: 'M4 12.5l5 5L20 6.5' }],
+  checkCircle: [
+    { t: 'circle', cx: 12, cy: 12, r: 10 },
+    { t: 'path', d: 'm9 12 2 2 4-4' },
+  ],
+  lock: [
+    { t: 'path', d: 'M7 11V7a5 5 0 0 1 10 0v4' },
+    { t: 'path', d: 'M5 11h14v10H5z' },
+  ],
+  sun: [
+    { t: 'circle', cx: 12, cy: 12, r: 4 },
+    { t: 'path', d: 'M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41' },
+  ],
+  moon: [{ t: 'path', d: 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z' }],
+  heart: [
+    {
+      t: 'path',
+      d: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
+    },
+  ],
+  comentar: [
+    { t: 'path', d: 'M7.9 20A9 9 0 1 0 4 16.1L2 22Z' },
+  ],
+  repeat: [
+    { t: 'path', d: 'm17 1 4 4-4 4' },
+    { t: 'path', d: 'M3 11V9a4 4 0 0 1 4-4h14' },
+    { t: 'path', d: 'm7 23-4-4 4-4' },
+    { t: 'path', d: 'M21 13v2a4 4 0 0 1-4 4H3' },
+  ],
+  compartir: [
+    { t: 'path', d: 'M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8' },
+    { t: 'path', d: 'm16 6-4-4-4 4' },
+    { t: 'path', d: 'M12 2v13' },
+  ],
+  at: [
+    { t: 'circle', cx: 12, cy: 12, r: 4 },
+    { t: 'path', d: 'M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94' },
+  ],
+  hashtag: [
+    { t: 'path', d: 'M4 9h16M4 15h16M10 3 8 21M16 3l-2 18' },
+  ],
+  atras: [
+    { t: 'path', d: 'M19 12H5' },
+    { t: 'path', d: 'm12 19-7-7 7-7' },
+  ],
+  home: [
+    { t: 'path', d: 'M3 9.5 12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' },
+    { t: 'path', d: 'M9 22v-7h6v7' },
+  ],
+  buscar: [
+    { t: 'circle', cx: 11, cy: 11, r: 8 },
+    { t: 'path', d: 'm21 21-4.35-4.35' },
+  ],
+  campana: [
+    { t: 'path', d: 'M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9' },
+    { t: 'path', d: 'M10.3 21a1.94 1.94 0 0 0 3.4 0' },
+  ],
+  chats: [
+    { t: 'path', d: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
+  ],
+  chispa: [
+    { t: 'path', d: 'M12 3l1.9 5.8 5.8 1.9-5.8 1.9L12 18.4l-1.9-5.8L4.3 10.7l5.8-1.9L12 3z' },
+    { t: 'path', d: 'M19 15.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6z' },
+  ],
+  play: [{ t: 'path', d: 'm6 3 12 9-12 9V3z' }],
+  microfono: [
+    { t: 'path', d: 'M9 2h6a1 1 0 0 1 1 1v8a4 4 0 0 1-8 0V3a1 1 0 0 1 1-1z' },
+    { t: 'path', d: 'M5 10v1a7 7 0 0 0 14 0v-1' },
+    { t: 'path', d: 'M12 18v4' },
+  ],
+  usuario: [
+    { t: 'circle', cx: 12, cy: 7.5, r: 4 },
+    { t: 'path', d: 'M5 21c0-3.3 3.1-5 7-5s7 1.7 7 5' },
+  ],
+  libro: [
+    { t: 'path', d: 'M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z' },
+    { t: 'path', d: 'M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z' },
+  ],
+  info: [
+    { t: 'circle', cx: 12, cy: 12, r: 10 },
+    { t: 'path', d: 'M12 16v-4' },
+    { t: 'path', d: 'M12 8h.01' },
+  ],
+  lapiz: [
+    { t: 'path', d: 'M12 20h9' },
+    { t: 'path', d: 'M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z' },
+  ],
+  pizarra: [
+    { t: 'path', d: 'M8 2h8' },
+    { t: 'path', d: 'M9 2v3h6V2' },
+    { t: 'path', d: 'M4 5h16l-1 15H5L4 5z' },
+  ],
+  megafono: [
+    { t: 'path', d: 'm3 11 18-5v12L3 14v-3z' },
+    { t: 'path', d: 'M11.6 16.8a3 3 0 1 1-5.8-1.6' },
+  ],
+  usuarios: [
+    { t: 'circle', cx: 9, cy: 8, r: 3.5 },
+    { t: 'path', d: 'M2 21c0-4 3-6 7-6s7 2 7 6' },
+    { t: 'circle', cx: 17.5, cy: 9.5, r: 2.5 },
+    { t: 'path', d: 'M22 21c0-2.6-1.4-4.6-3.8-5.3' },
+  ],
+  advertencia: [
+    { t: 'path', d: 'M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z' },
+    { t: 'path', d: 'M12 9v4' },
+    { t: 'path', d: 'M12 17h.01' },
+  ],
+};
+
+const formas = iconos[name] ?? iconos.info;
+---
+
+<svg
+  class:list={['shrink-0', cls]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {
+    formas.map((f) =>
+      f.t === 'path' ? (
+        <path d={f.d} />
+      ) : f.t === 'circle' ? (
+        <circle cx={f.cx} cy={f.cy} r={f.r} />
+      ) : (
+        <line x1={f.x1} y1={f.y1} x2={f.x2} y2={f.y2} />
+      ),
+    )
+  }
+</svg>

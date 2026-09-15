@@ -1,0 +1,105 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../components/Layout.astro';
+import Icon from '../../../components/Icon.astro';
+import Bloqueada from '../../../components/Bloqueada.astro';
+import plan from '../../../config/plan.json';
+import progreso from '../../../config/progreso.json';
+
+export async function getStaticPaths() {
+  const temas = await getCollection('temas');
+  return temas.map((t) => ({
+    params: { numero: String(t.data.clase), tema: t.id },
+    props: { tema: t },
+  }));
+}
+
+const { tema } = Astro.props as {
+  tema: Awaited<ReturnType<typeof getCollection<'temas'>>>[number];
+};
+const numero = Number(Astro.params.numero);
+const clase = plan.clases.find((c) => c.numero === numero);
+
+const accesible = Boolean(clase) && numero <= progreso.claseActual;
+const { Content } = await render(tema);
+
+const hermanos = (await getCollection('temas', (t) => t.data.clase === numero)).sort(
+  (a, b) => a.data.orden - b.data.orden,
+);
+const indice = hermanos.findIndex((t) => t.id === tema.id);
+const anterior = indice > 0 ? hermanos[indice - 1] : null;
+const siguiente = indice > -1 && indice < hermanos.length - 1 ? hermanos[indice + 1] : null;
+---
+
+<Layout
+  titulo={tema.data.titulo}
+  descripcion={tema.data.resumen || `Tema de la clase ${numero} del curso.`}
+>
+  <nav aria-label="Ubicación actual" class="mb-8">
+    <a
+      href={`/clase/${numero}/`}
+      class="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 font-bold text-acento-texto no-underline hover:underline"
+    >
+      <Icon name="atras" size={22} />
+      Volver a la clase {numero}
+    </a>
+  </nav>
+
+  {
+    accesible ? (
+      <article>
+        <header class="mb-8">
+          <p class="text-sm font-bold text-tinta-suave">
+            Clase {numero} · {clase?.red} · {clase?.titulo}
+          </p>
+          <h1 class="mt-2 text-2xl font-bold sm:text-3xl">{tema.data.titulo}</h1>
+        </header>
+
+        <div class="contenido">
+          <Content />
+        </div>
+
+        <nav
+          aria-label="Navegación entre temas"
+          class="mt-12 flex flex-col gap-3 sm:flex-row sm:justify-between"
+        >
+          {
+            anterior ? (
+              <a
+                href={`/clase/${numero}/${anterior.id}/`}
+                class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-superficie-borde bg-superficie px-4 py-3 font-bold text-tinta no-underline hover:border-acento"
+              >
+                <Icon name="atras" size={22} />
+                <span>
+                  Tema anterior
+                  <span class="block text-sm font-normal text-tinta-suave">{anterior.data.titulo}</span>
+                </span>
+              </a>
+            ) : (
+              <span aria-hidden="true"></span>
+            )
+          }
+          {
+            siguiente && (
+              <a
+                href={`/clase/${numero}/${siguiente.id}/`}
+                class="inline-flex min-h-12 items-center justify-end gap-2 rounded-xl border border-superficie-borde bg-superficie px-4 py-3 text-right font-bold text-tinta no-underline hover:border-acento"
+              >
+                <span>
+                  Tema siguiente
+                  <span class="block text-sm font-normal text-tinta-suave">{siguiente.data.titulo}</span>
+                </span>
+                <Icon name="atras" size={22} class="rotate-180" />
+              </a>
+            )
+          }
+        </nav>
+      </article>
+    ) : (
+      <Bloqueada
+        titulo="Contenido no disponible"
+        mensaje="Este tema pertenece a una clase que todavía no se ha impartido. Volverás a verlo aquí después de la clase presencial."
+      />
+    )
+  }
+</Layout>

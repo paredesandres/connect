@@ -1,0 +1,35 @@
+---
+clase: 1
+orden: 5
+titulo: "Publicar un tweet"
+resumen: "Cómo escribir y enviar un mensaje a todas sus seguidoras en X."
+---
+
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Publicar un mensaje es lo mismo que levantar la mano en una sala: todos lo ven al mismo tiempo. En X se llama «publicar», «tuitear» o «postear». El nombre no importa; el paso sí.
+
+<Pasos
+  pasos={[
+    'Toque el botón circular con un signo «+», en la parte inferior derecha.',
+    'Aparece el espacio para escribir. Escriba su mensaje.',
+    'Si quiere, toque el ícono de imagen (la montañita) para añadir una foto.',
+    'Cuando esté listo, toque el botón azul «Publicar».',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Cada mensaje (tweet) puede tener como máximo <strong>280 caracteres</strong> (un carácter es
+    cada letra, espacio o signo de puntuación). Esas son las reglas de la plataforma.
+    No se preocupe si la primera vez no sabe bien qué poner: la mejor forma de aprender
+    es practicar.
+  </p>
+</Nota>
+
+<p>
+  Después de publicar, su mensaje queda visible en su perfil y en la pantalla de las
+  personas que lo sigan. Si alguien le da «me gusta» o comenta, lo verá en
+  Notificaciones (la campanita).
+</p>

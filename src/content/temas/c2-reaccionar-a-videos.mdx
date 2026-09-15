@@ -1,0 +1,36 @@
+---
+clase: 2
+orden: 4
+titulo: "Reaccionar a videos"
+resumen: "Cómo dar «me gusta» y comentar los videos que aparecen en su pantalla de inicio."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+En X también se publican videos. Reaccionar a ellos es muy parecido a reaccionar a una publicación normal: puede dar «me gusta» y escribir comentarios. Es una buena costumbre para mostrar atención y dejar de ser solo espectador.
+
+<PostExample
+  tipo="like"
+  nombre="Club de Lectura Vecinal"
+  usuario="@club_lectura"
+  texto="Hoy compartimos el resumen del libro del mes. ¡Gracias a todos por participar en la sesión!"
+  boton="Ver cómo se da «me gusta»"
+/>
+
+<Pasos
+  pasos={[
+    'Debajo del video verá el ícono de un corazón.',
+    'Toque el corazón: se llena de color y el contador sube.',
+    'Para opinar, toque la burbuja de diálogo y escriba su comentario.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    En la mayoría de redes el «me gusta» funciona igual: un corazón o un pulgar que se
+    llenan de color. Lo que ve aquí en el ejemplo es la misma mecánica que usará en X,
+    TikTok y Facebook.
+  </p>
+</Nota>

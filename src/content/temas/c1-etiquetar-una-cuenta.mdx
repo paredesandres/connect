@@ -1,0 +1,42 @@
+---
+clase: 1
+orden: 6
+titulo: "Etiquetar una cuenta con (@)"
+resumen: "Cómo mencionar a otra persona en su publicación para que reciba un aviso y pueda ver lo que escribió."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Cuando escribe **@** seguido del nombre de usuario (por ejemplo, `@ana_gomez`), está <em>etiquetando</em> o <em>mencionando</em> a esa cuenta. La persona recibe un aviso en Notificaciones y puede ver su publicación.
+
+Es una forma de decirle a alguien: «Oye, mira lo que puse aquí».
+
+<PostExample
+  tipo="mencionar"
+  nombre="María López"
+  usuario="@maria_lopez"
+  texto="Excelente recomendación, gracias por compartirla."
+  boton="Ver cómo se menciona una cuenta"
+/>
+
+<Pasos
+  pasos={[
+    'En su mensaje, escriba el símbolo @ y empiece a escribir el nombre.',
+    'Aparece una lista con las cuentas que coinciden con lo que escribe.',
+    'Toque la cuenta correcta y el nombre se inserta de forma resaltada.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <ul>
+    <li>
+      <strong>Etiquetar</strong> no es lo mismo que <strong>seguir</strong>: al mencionar a alguien,
+      no empieza a seguir su cuenta automáticamente.
+    </li>
+    <li>
+      Puede mencionar varias cuentas en la misma publicación, repitiendo @ más veces.
+    </li>
+  </ul>
+</Nota>

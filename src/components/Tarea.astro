@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+
+// Tarea del curso: lo que hay que hacer entre clase y clase.
+---
+
+<aside class="mt-8 rounded-xl border border-superficie-borde bg-superficie p-6 shadow-sm">
+  <h3 class="flex items-center gap-3 text-lg font-bold">
+    <Icon name="pizarra" size={28} class="text-acento" />
+    <span>Tarea para la próxima clase</span>
+  </h3>
+  <div class="mt-3 space-y-3">
+    <slot />
+  </div>
+</aside>

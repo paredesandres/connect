@@ -1,0 +1,229 @@
+@import "@fontsource/atkinson-hyperlegible/400.css";
+@import "@fontsource/atkinson-hyperlegible/700.css";
+@import "tailwindcss";
+
+/* Dark mode controlado por clase .dark (override manual con persistencia). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===================================================================
+   Tokens semánticos. Se invierten automáticamente bajo .dark.
+   `inline` hace que las utilities lean la variable en runtime.
+   =================================================================== */
+:root {
+  --hueso: #faf7f1;
+  --tinta: #1c1b19;
+  --tinta-suave: #574f42;
+  --superficie: #ffffff;
+  --superficie-borde: #e4e0d8;
+  --acento: #2c5f63;
+  --acento-texto: #254e52;
+  --on-acento: #ffffff;
+  --acento-tinte: #eaf1f0;
+  --bloqueo: #6e6a5f;
+  --bloqueo-tinte: #f1eee7;
+  --me-gusta: #b23a33;
+  --foco-anillo: #8ab0b4;
+}
+
+.dark {
+  --hueso: #1a1917;
+  --tinta: #f3efe6;
+  --tinta-suave: #cfc8b9;
+  --superficie: #242220;
+  --superficie-borde: #3a382f;
+  --acento: #6fb6bb;
+  --acento-texto: #7cc4c9;
+  --on-acento: #13201f;
+  --acento-tinte: #22383a;
+  --bloqueo: #8f897c;
+  --bloqueo-tinte: #21211f;
+  --me-gusta: #e06a5e;
+  --foco-anillo: #6fb6bb;
+}
+
+@theme inline {
+  --font-sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+
+  --color-hueso: var(--hueso);
+  --color-tinta: var(--tinta);
+  --color-tinta-suave: var(--tinta-suave);
+  --color-superficie: var(--superficie);
+  --color-superficie-borde: var(--superficie-borde);
+  --color-acento: var(--acento);
+  --color-acento-texto: var(--acento-texto);
+  --color-on-acento: var(--on-acento);
+  --color-acento-tinte: var(--acento-tinte);
+  --color-bloqueo: var(--bloqueo);
+  --color-bloqueo-tinte: var(--bloqueo-tinte);
+  --color-me-gusta: var(--me-gusta);
+  --color-foco-anillo: var(--foco-anillo);
+}
+
+/* ===================================================================
+   Base
+   =================================================================== */
+@layer base {
+  * {
+    border-color: var(--superficie-borde);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+
+  .dark,
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--hueso);
+    color: var(--tinta);
+    font-family: var(--font-sans);
+    font-size: 1.125rem; /* 18px en mobile; nunca menos de 16px */
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  a {
+    color: var(--acento-texto);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+  }
+
+  a:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  /* Foco visible en todos los controles, en ambos modos. */
+  :focus-visible {
+    outline: 3px solid var(--foco-anillo);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--acento-tinte);
+    color: var(--tinta);
+  }
+}
+
+/* ===================================================================
+   Enlace de salto al contenido (oculto hasta recibir foco)
+   =================================================================== */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  background: var(--acento);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dark .skip-link {
+  color: #142023;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* ===================================================================
+   Estilo del contenido curricular (generado desde MDX)
+   =================================================================== */
+.contenido > * + * {
+  margin-top: 1.5rem;
+}
+
+.contenido h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+}
+
+.contenido h2:first-child {
+  margin-top: 0;
+}
+
+.contenido h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.contenido ul,
+.contenido ol {
+  padding-left: 1.5rem;
+}
+
+.contenido ul {
+  list-style: disc;
+}
+
+.contenido ol {
+  list-style: decimal;
+}
+
+.contenido li {
+  margin-top: 0.5rem;
+}
+
+.contenido li::marker {
+  color: var(--acento);
+  font-weight: 700;
+}
+
+.contenido strong {
+  font-weight: 700;
+}
+
+/* ===================================================================
+   Componentes reutilizables
+   =================================================================== */
+@layer components {
+  .btn-acento {
+    background: var(--acento);
+    color: var(--on-acento);
+  }
+
+  .btn-acento:hover {
+    background: var(--acento-texto);
+  }
+}
+
+/* ===================================================================
+   Movimiento: respetar prefers-reduced-motion en todo el sitio.
+   =================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

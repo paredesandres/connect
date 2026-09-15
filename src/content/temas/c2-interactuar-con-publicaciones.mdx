@@ -1,0 +1,45 @@
+---
+clase: 2
+orden: 7
+titulo: "Interactuar con publicaciones"
+resumen: "Las tres formas de participar: me gusta, comentar y compartir la publicación de otra persona."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Interactuar significa <strong>participar</strong> en lo que otros publican, en lugar de solo mirar. Las tres acciones principales son:
+
+- **Me gusta**: el corazón. Es lo más sencillo: un gesto para decir «me gustó».
+- **Comentar**: la burbuja de diálogo. Escribir su opinión debajo de la publicación.
+- **Compartir**: el ícono de flechas. Divulgar la publicación fuera de su perfil o enviarla a otra persona.
+
+<PostExample
+  tipo="compartir"
+  nombre="Rayita, la tortuga"
+  usuario="@rayita_tortuga"
+  texto="Hoy aprendí a cruzar la calle mirando a los dos lados. ¡Gracias por las clases!"
+  boton="Ver cómo se comparte una publicación"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono de compartir (las flechas en diagonal).',
+    'Se abre el menú con las opciones: enviar por mensaje, copiar el enlace u otras aplicaciones.',
+    'Elija la opción que prefiera y confirme.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    No hace falta responder a todo ni comentarlo todo. Interactuar es libre: usted elige
+    cuándo. Eso sí, lo que publica y comenta queda guardado, así que conviene escribir
+    con respeto, como se haría cara a cara.
+  </p>
+</Nota>
+
+<p>
+  Con esto ha visto las tres formas de participar en las publicaciones de otras cuentas.
+  Ahora toca practicar, tal y como dice la tarea de esta clase.
+</p>

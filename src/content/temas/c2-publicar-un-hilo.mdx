@@ -1,0 +1,36 @@
+---
+clase: 2
+orden: 1
+titulo: "Publicar un hilo"
+resumen: "Qué es un hilo en X y cómo crearlo para contar algo largo en varias partes."
+---
+
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Un **hilo** es una serie de publicaciones encadenadas, una tras otra, sobre el mismo tema. Se usa cuando lo que quiere decir no cabe en un solo mensaje: lo divide en partes y lo publica como una lista numerada.
+
+A la persona que lo lea le aparecerán todas las partes juntas, una debajo de la otra.
+
+<Pasos
+  pasos={[
+    'Toque el botón «+» y escriba su primer mensaje.',
+    'En vez de publicar directamente, toque el signo «+» que aparece abajo a la derecha del espacio de texto.',
+    'Escriba la segunda parte.',
+    'Repita los pasos anteriores las veces que necesite.',
+    'Cuando tenga todo listo, toque «Publicar todo».',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Cada publicación del hilo se ve numerada (1/5, 2/5…). Las personas leen en orden,
+    de arriba hacia abajo, igual que un capítulo de un libro. Si se equivoca en una parte,
+    la puede editar sin eliminar el resto.
+  </p>
+</Nota>
+
+<p>
+  Una vez publicado, puede compartir el enlace completo del hilo para que alguien lo
+  lea entero sin tener que ir y venir.
+</p>

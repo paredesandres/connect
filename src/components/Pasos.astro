@@ -1,0 +1,20 @@
+---
+// Pasos numerados, con tamaño de toque generoso y buena legibilidad.
+const { pasos = [] } = Astro.props;
+---
+
+<ol class="mt-8 space-y-4" aria-label="Pasos para realizarlo">
+  {
+    pasos.map((paso: string, i: number) => (
+      <li class="flex items-start gap-4">
+        <span
+          aria-hidden="true"
+          class="btn-acento mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full font-bold"
+        >
+          {i + 1}
+        </span>
+        <span class="pt-1" data-fake>{paso}</span>
+      </li>
+    ))
+  }
+</ol>

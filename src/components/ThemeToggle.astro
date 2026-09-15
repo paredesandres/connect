@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+---
+
+<button
+  id="alternar-tema"
+  type="button"
+  class="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-superficie-borde bg-superficie px-3 font-bold text-tinta"
+  data-tema-toggle
+>
+  <span data-ico="sun"><Icon name="sun" size={26} /></span>
+  <span data-ico="luna" class="hidden"><Icon name="moon" size={26} /></span>
+  <span data-tx class="whitespace-nowrap">Modo oscuro</span>
+</button>
+
+<script>
+  const boton = document.querySelector('[data-tema-toggle]');
+  if (boton) {
+    const parte = (sel: string) => boton.querySelector(sel);
+    const iconoSol = parte('[data-ico="sun"]');
+    const iconoLuna = parte('[data-ico="luna"]');
+    const texto = parte('[data-tx]');
+
+    const sincronizar = () => {
+      const oscuro = document.documentElement.classList.contains('dark');
+      const etiqueta = oscuro ? 'Activar modo claro' : 'Activar modo oscuro';
+      iconoSol?.classList.toggle('hidden', oscuro);
+      iconoLuna?.classList.toggle('hidden', !oscuro);
+      if (texto) texto.textContent = oscuro ? 'Modo claro' : 'Modo oscuro';
+      boton.setAttribute('aria-label', etiqueta);
+      boton.setAttribute('title', etiqueta);
+    };
+
+    boton.addEventListener('click', () => {
+      const oscuro = !document.documentElement.classList.contains('dark');
+      document.documentElement.classList.toggle('dark', oscuro);
+      try {
+        localStorage.setItem('tema-conecta', oscuro ? 'oscuro' : 'claro');
+      } catch (e) {
+        /* modo local inaccesible: se sigue usando en la sesión actual */
+      }
+      sincronizar();
+    });
+
+    sincronizar();
+  }
+</script>

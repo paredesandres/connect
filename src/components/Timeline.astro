@@ -1,0 +1,37 @@
+---
+// Ruta de aprendizaje: la línea de tiempo con las 8 clases del curso.
+import plan from '../config/plan.json';
+import progreso from '../config/progreso.json';
+import ClassCard from './ClassCard.astro';
+
+const claseActual = progreso.claseActual;
+
+type Estado = 'completada' | 'actual' | 'bloqueada';
+type ClasePlan = (typeof plan)['clases'][number];
+
+const estadoDe = (n: number): Estado =>
+  n < claseActual ? 'completada' : n === claseActual ? 'actual' : 'bloqueada';
+
+const clases: Array<ClasePlan & { estado: Estado }> = plan.clases.map((c) => ({
+  ...c,
+  estado: estadoDe(c.numero),
+}));
+---
+
+<ol class="relative" aria-label="Ruta de aprendizaje del curso">
+  <span
+    aria-hidden="true"
+    class="absolute bottom-8 left-5 top-2 w-0.5 -translate-x-1/2 bg-superficie-borde"
+  ></span>
+  {
+    clases.map((c) => (
+      <ClassCard
+        numero={c.numero}
+        red={c.red}
+        titulo={c.titulo}
+        temas={c.temas}
+        estado={c.estado}
+      />
+    ))
+  }
+</ol>

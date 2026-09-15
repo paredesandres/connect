@@ -1,0 +1,37 @@
+---
+clase: 2
+orden: 2
+titulo: "Repostear una publicación"
+resumen: "Compartir en su perfil lo que otra persona publicó, con un solo gesto."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+**Repostear** significa volver a publicar en su perfil algo que otra persona publicó. Le da la razón a quien lo escribió, y sus seguidores también lo verán.
+
+Es como cuando en clase alguien le pasa un apunte muy bueno y usted lo comparte con un compañero.
+
+<PostExample
+  tipo="repost"
+  nombre="Pedro Ruiz"
+  usuario="@pedro_ruiz42"
+  texto="Consejo del día: tómate un minuto para revisar lo que escribes antes de publicar. Marca la diferencia."
+  boton="Ver cómo se repostea"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el icono de dos flechas que forma un círculo (repostear), debajo de la publicación.',
+    'Se abre un menú con opciones.',
+    'Elija «Repost» y la publicación aparecerá en su perfil.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Si usted lo publica tal cual, se llama <strong>repost</strong>. Si además escribe su propio
+    comentario encima, se llama <strong>cita</strong>; lo veremos en el siguiente tema.
+  </p>
+</Nota>

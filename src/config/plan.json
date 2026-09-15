@@ -1,0 +1,125 @@
+{
+  "clases": [
+    {
+      "numero": 1,
+      "red": "X (Twitter)",
+      "titulo": "Creación, configuración y exploración",
+      "temas": [
+        "Crear una cuenta usando Gmail",
+        "Editar el nombre de usuario (@)",
+        "Cambiar el nombre del perfil",
+        "Explorar la interfaz de X",
+        "Publicar un tweet",
+        "Etiquetar una cuenta con (@)"
+      ]
+    },
+    {
+      "numero": 2,
+      "red": "X (Twitter)",
+      "titulo": "Publicaciones e interacción",
+      "temas": [
+        "Publicar un hilo",
+        "Repostear una publicación",
+        "Publicar una cita",
+        "Reaccionar a videos",
+        "Conocer los Espacios de X",
+        "Conocer X Premium y Premium+",
+        "Interactuar con publicaciones"
+      ],
+      "tarea": "Publicar un tweet con una opinión sobre un tema que te interese. Incluir un hashtag y, cuando sea apropiado, etiquetar una cuenta."
+    },
+    {
+      "numero": 3,
+      "red": "TikTok",
+      "titulo": "Exploración y uso básico",
+      "temas": [
+        "Explorar la interfaz de TikTok",
+        "Buscar y descubrir contenido",
+        "Seguir cuentas",
+        "Dar «Me gusta» a videos",
+        "Comentar publicaciones",
+        "Compartir videos",
+        "Utilizar hashtags (#)",
+        "Etiquetar otras cuentas (@)",
+        "Opciones para crear y publicar contenido"
+      ],
+      "tarea": "Seleccionar un video sobre un tema que te interese. Darle «Me gusta», comentar y compartirlo."
+    },
+    {
+      "numero": 4,
+      "red": "TikTok",
+      "titulo": "Crear y publicar contenido",
+      "temas": [
+        "Grabar un video",
+        "Agregar texto",
+        "Agregar subtítulos",
+        "Utilizar sonidos o música",
+        "Agregar hashtags",
+        "Etiquetar otras cuentas",
+        "Publicar un video",
+        "Compartir el video publicado"
+      ],
+      "tarea": "Graba un video corto de 15 a 20 segundos expresando tu opinión sobre un tema que te interese. Agrega subtítulos y publícalo."
+    },
+    {
+      "numero": 5,
+      "red": "YouTube",
+      "titulo": "Explorar y publicar contenido",
+      "temas": [
+        "Buscar y ver videos",
+        "Suscribirse a un canal",
+        "Dar «Me gusta»",
+        "Comentar videos",
+        "Compartir videos",
+        "Explorar las funciones básicas de YouTube",
+        "Subir un video",
+        "Crear un título",
+        "Escribir una descripción",
+        "Compartir el enlace del video"
+      ],
+      "tarea": "Sube un video un poco más largo donde expliques tu opinión sobre un tema que te interese. Escribe un título claro y descriptivo."
+    },
+    {
+      "numero": 6,
+      "red": "Facebook",
+      "titulo": "Publicar e interactuar",
+      "temas": [
+        "Explorar la interfaz de Facebook",
+        "Publicar texto, foto o video",
+        "Comentar y reaccionar a publicaciones",
+        "Compartir una publicación",
+        "Etiquetar a una persona",
+        "Publicar en grupos",
+        "Configurar quién puede ver una publicación"
+      ],
+      "tarea": "Publica una opinión en Facebook utilizando texto, fotografía o video."
+    },
+    {
+      "numero": 7,
+      "red": "Inteligencia Artificial",
+      "titulo": "La IA como herramienta de apoyo",
+      "temas": [
+        "¿Qué es la inteligencia artificial?",
+        "¿Para qué puede utilizarse?",
+        "Conocer herramientas como ChatGPT y Claude",
+        "¿Qué es un prompt?",
+        "Cómo escribir una instrucción clara",
+        "Usar la IA para redactar y mejorar textos",
+        "Revisar y verificar la información generada"
+      ],
+      "tarea": "Usa una herramienta de IA para mejorar un texto de opinión que hayas escrito y compara el resultado con tu versión original."
+    },
+    {
+      "numero": 8,
+      "red": "IA Aplicada y Práctica Final",
+      "titulo": "Crear contenido con ayuda de IA",
+      "temas": [
+        "Generar imágenes con inteligencia artificial",
+        "Crear una imagen para acompañar una publicación",
+        "Mejorar un texto utilizando IA",
+        "Verificar si la información de la IA es confiable",
+        "Adaptar una opinión a diferentes redes sociales"
+      ]
+    }
+  ]
+}

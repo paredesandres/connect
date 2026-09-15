@@ -1,0 +1,271 @@
+---
+// Publicación de ejemplo reutilizable (no es una app real; solo muestra la interacción).
+import Icon from './Icon.astro';
+
+type Tipo = 'like' | 'comentar' | 'repost' | 'compartir' | 'mencionar';
+
+type Props = {
+  tipo?: Tipo;
+  nombre?: string;
+  usuario?: string;
+  tiempo?: string;
+  boton?: string;
+  likes?: number;
+  reposts?: number;
+  pasos?: string[];
+};
+
+const {
+  tipo = 'like',
+  nombre = 'Sofía Martínez',
+  usuario = '@sofia_martinez',
+  tiempo = 'hace 2 horas',
+  boton = 'Ver cómo se hace',
+  likes = 23,
+  reposts = 7,
+  pasos,
+} = Astro.props as Props;
+
+const tipos: Tipo[] = ['like', 'comentar', 'repost', 'compartir', 'mencionar'];
+const tipoValido: Tipo = tipos.includes(tipo) ? tipo : 'like';
+
+const textos: Record<Tipo, string> = {
+  like: 'Me encanta este consejo para empezar a usar las redes sociales.',
+  comentar: 'Hoy aprendimos a escribir en redes sociales. ¿Quién se anima a participar?',
+  repost: 'Un apunte muy útil de la clase de hoy.',
+  compartir: 'Un video que vale la pena compartir con la familia.',
+  mencionar: 'Muy buena explicación de cómo armar un esquema de estudio.',
+};
+
+const pasosVista: Record<Tipo, string[]> = {
+  like: [
+    'Toque el corazón que está debajo de la publicación.',
+    'El corazón se llena de color.',
+    'El contador de «me gusta» sube de número.',
+  ],
+  comentar: [
+    'Toque el icono de comentar (la burbuja de diálogo).',
+    'Aparece el campo para escribir, con el cursor listo.',
+    'Escriba el texto y pulse «Publicar».',
+  ],
+  repost: [
+    'Toque el icono de dos flechas (repostear).',
+    'El icono gira y cambia de color.',
+    'El contador de reposts sube de número.',
+  ],
+  compartir: [
+    'Toque el icono de compartir (con flechas hacia afuera).',
+    'Se abre el menú con las opciones para compartir.',
+    'Elija con quién compartirlo.',
+  ],
+  mencionar: [
+    'En el campo de texto, escriba el símbolo @.',
+    'Aparece una lista con cuentas sugeridas.',
+    'Toque la cuenta deseada y se inserta resaltada en el texto.',
+  ],
+};
+
+const explicacionAria: Record<Tipo, string> = {
+  like: 'Ejemplo: cómo dar «me gusta» a una publicación',
+  comentar: 'Ejemplo: cómo comentar una publicación',
+  repost: 'Ejemplo: cómo repostear una publicación',
+  compartir: 'Ejemplo: cómo compartir una publicación',
+  mencionar: 'Ejemplo: cómo etiquetar o mencionar una cuenta con @',
+};
+
+const listaPasos = pasos ?? pasosVista[tipoValido];
+const inicial = nombre.trim().charAt(0).toUpperCase();
+const tieneCampo = tipoValido === 'comentar' || tipoValido === 'mencionar';
+const sugerencias = [
+  { nombre: 'Ana Gómez', usuario: '@ana_gomez' },
+  { nombre: 'Pedro Ruiz', usuario: '@pedro_ruiz42' },
+  { nombre: 'Luis Fernández', usuario: '@luis_fer' },
+];
+---
+
+<div
+  class="demo-cuerpo my-4 overflow-hidden rounded-2xl border border-superficie-borde bg-superficie shadow-sm"
+  data-post-example
+  data-tipo={tipoValido}
+  data-sin-like={likes}
+  data-sin-repost={reposts}
+  role="group"
+  aria-label={explicacionAria[tipoValido]}
+>
+  <!-- Tarjeta de publicación (decorativa, no interactiva) -->
+  <div class="p-5">
+    <div class="flex items-center gap-4">
+      <span aria-hidden="true" class="flex size-12 shrink-0 items-center justify-center rounded-full btn-acento text-xl font-bold">
+        {inicial}
+      </span>
+      <div class="min-w-0">
+        <p class="truncate font-bold">{nombre}</p>
+        <p class="truncate text-sm text-tinta-suave">{usuario} · {tiempo}</p>
+      </div>
+    </div>
+    <p class="mt-4 text-[1.0625rem] leading-6">{textos[tipoValido]}</p>
+
+    <!-- Barra de acciones. aria-hidden: es ilustrativa; la enseñanza va por pasos. -->
+    <div class="area-acciones-aria mt-5 flex items-center justify-between gap-2 border-t border-superficie-borde pt-4" aria-hidden="true" data-acciones>
+      <span data-accion="comentar" class="postex-icono">
+        <Icon name="comentar" size={32} />
+        <span class="postex-contador">2</span>
+      </span>
+      <span data-accion="repost" class="postex-icono">
+        <Icon name="repeat" size={32} />
+        <span class="postex-contador" data-contador="repost">{reposts}</span>
+      </span>
+      <span data-accion="like" class="postex-icono">
+        <Icon name="heart" size={32} />
+        <span class="postex-contador" data-contador="like">{likes}</span>
+      </span>
+      <span data-accion="compartir" class="postex-icono">
+        <Icon name="compartir" size={32} />
+      </span>
+    </div>
+
+    <!-- Campo para comentar / mencionar -->
+    {
+      tieneCampo && (
+        <div data-compositor class="demo-compositor mt-4 hidden" aria-label="Campo de escritura de ejemplo">
+          <div class="relative">
+            <input
+              data-campo
+              type="text"
+              autocomplete="off"
+              aria-label="Escribir un comentario de ejemplo"
+              placeholder="Escribir un comentario…"
+              class="block w-full rounded-lg border border-superficie-borde bg-hueso px-4 py-3 pr-10"
+            />
+            <span data-caret class="caret hidden" aria-hidden="true"></span>
+          </div>
+
+          <ul data-sugerencias class="mt-3 hidden space-y-2">
+            {
+              sugerencias.map((s) => (
+                <li>
+                  <button
+                    type="button"
+                    data-elegir={s.nombre}
+                    class="flex w-full items-center gap-3 rounded-lg bg-hueso p-3 text-left"
+                  >
+                    <span aria-hidden="true" class="flex size-10 shrink-0 items-center justify-center rounded-full btn-acento text-lg font-bold">
+                      {s.nombre.charAt(0)}
+                    </span>
+                    <span class="min-w-0">
+                      <span class="block font-bold">{s.nombre}</span>
+                      <span class="block truncate text-sm text-tinta-suave">{s.usuario}</span>
+                    </span>
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+
+          <p
+            data-chip
+            class="hidden px-1 pt-3 text-base"
+            aria-hidden="true"
+          >
+            Se insertó: <strong data-chip-texto class="rounded-md bg-acento-tinte px-2 py-1 text-acento-texto"></strong>
+          </p>
+        </div>
+      )
+    }
+
+    <!-- Botón que dispara la animación -->
+    <button type="button" class="demo-trigger mt-5 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg btn-acento px-6 font-bold">
+      <Icon name="play" size={24} />
+      {boton}
+    </button>
+
+    <!-- Pasos numerados que acompañan la animación -->
+    <div class="mt-6">
+      <p class="mb-3 font-bold">Así se hace, paso a paso:</p>
+      <ol class="space-y-3">
+        {
+          listaPasos.map((paso, i) => (
+            <li class="flex items-start gap-4">
+              <span aria-hidden="true" class="flex size-8 shrink-0 items-center justify-center rounded-full bg-acento-tinte font-bold text-acento-texto">
+                {i + 1}
+              </span>
+              <span class="pt-0.5" data-pasos-texto>{paso}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <!-- Anuncios accesibles de lo que ocurre en la animación -->
+    <p class="sr-only" aria-live="polite" data-salida></p>
+  </div>
+</div>
+
+<style>
+  .postex-icono {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--tinta-suave);
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
+    transition: color 180ms ease;
+  }
+
+  .postex-contador {
+    font-size: 0.9375rem;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .demo-destacado {
+    color: var(--me-gusta) !important;
+  }
+
+  .demo-compositor {
+    transition: box-shadow 200ms ease;
+  }
+
+  .demo-resaltar {
+    box-shadow: 0 0 0 3px var(--foco-anillo);
+    border-radius: 0.5rem;
+  }
+
+  .demo-rebote {
+    animation: rebote 600ms ease;
+  }
+
+  @keyframes rebote {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.4); }
+    70% { transform: scale(0.92); }
+    100% { transform: scale(1); }
+  }
+
+  .demo-giro {
+    animation: giro 700ms ease;
+  }
+
+  @keyframes giro {
+    0% { transform: rotate(0); }
+    45% { transform: rotate(-22deg); }
+    70% { transform: rotate(8deg); }
+    100% { transform: rotate(0); }
+  }
+
+  .caret {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 3px;
+    height: 1.4rem;
+    margin-top: -0.7rem;
+    background: var(--acento);
+    animation: parpadeo 1s steps(2, start) infinite;
+  }
+
+  @keyframes parpadeo {
+    to { visibility: hidden; }
+  }
+</style>

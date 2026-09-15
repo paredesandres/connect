@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import sitio from '../config/sitio.json';
+import ThemeToggle from './ThemeToggle.astro';
+
+const {
+  titulo = 'Inicio',
+  descripcion = sitio.subtitulo,
+  rutaActual = '/',
+} = Astro.props;
+
+const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${sitio.curso}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={descripcion} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{tituloPagina}</title>
+
+    <!-- Aplica el tema elegido antes de pintar, para evitar parpadeo. -->
+    <script is:inline>
+      (function () {
+        try {
+          var valor = localStorage.getItem('tema-conecta');
+          var oscuro =
+            valor === 'oscuro'
+              ? true
+              : valor === 'claro'
+                ? false
+                : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', oscuro);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido-principal">
+      Saltar al contenido principal
+    </a>
+
+    <header
+      class="border-b border-superficie-borde bg-hueso"
+      style="background-color: var(--hueso)"
+    >
+      <div
+        class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6"
+      >
+        <a
+          href="/"
+          aria-current={rutaActual === '/' ? 'page' : undefined}
+          class="min-w-0 text-lg font-bold leading-tight text-tinta no-underline hover:underline sm:text-xl"
+        >
+          {sitio.corto}
+        </a>
+        <ThemeToggle />
+      </div>
+    </header>
+
+    <main id="contenido-principal" class="mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10">
+      <slot />
+    </main>
+
+    <footer class="border-t border-superficie-borde">
+      <div
+        class="mx-auto flex max-w-5xl flex-col gap-1 px-4 py-6 text-sm text-tinta-suave sm:px-6"
+      >
+        <p>{sitio.curso}</p>
+        <p>Repaso y práctica desde casa, después de cada clase.</p>
+      </div>
+    </footer>
+
+    <script>
+      import '../scripts/post-example.js';
+    </script>
+  </body>
+</html>

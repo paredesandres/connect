@@ -1,0 +1,68 @@
+---
+// Contenido interno de una tarjeta de clase (enlace o bloqueada).
+import Icon from './Icon.astro';
+
+type Props = {
+  numero: number;
+  red: string;
+  titulo: string;
+  temas: string[];
+  estado: 'completada' | 'actual' | 'bloqueada';
+};
+
+const { numero, red, titulo, temas = [], estado } = Astro.props as Props;
+---
+
+<div class="flex flex-col gap-3">
+  <p
+    class:list={[
+      'flex items-center gap-2 font-bold',
+      estado === 'bloqueada' ? 'text-bloqueo' : 'text-acento',
+    ]}
+  >
+    {estado === 'completada' && (
+      <>
+        <Icon name="checkCircle" size={24} />
+        <span>Completada</span>
+      </>
+    )}
+    {estado === 'actual' && (
+      <>
+        <span
+          aria-hidden="true"
+          class="flex size-5 items-center justify-center rounded-full bg-acento"
+        >
+          <span class="size-2 rounded-full bg-white dark:bg-[#1a1917]"></span>
+        </span>
+        <span>Clase de hoy</span>
+      </>
+    )}
+    {estado === 'bloqueada' && (
+      <>
+        <Icon name="lock" size={24} />
+        <span>Disponible próximamente</span>
+      </>
+    )}
+    <span aria-hidden="true" class="font-normal text-bloqueo">·</span>
+    <span class="text-sm font-normal text-bloqueo">Clase {numero}</span>
+  </p>
+
+  <h2 class="text-xl font-bold leading-snug sm:text-2xl">{titulo}</h2>
+  <p class="text-sm font-bold text-tinta-suave">{red}</p>
+
+  <ul class="mt-1 space-y-2">
+    {
+      temas.map((t, i) => (
+        <li class="flex items-start gap-3 text-tinta">
+          <span
+            aria-hidden="true"
+            class="mt-2.5 size-2.5 shrink-0 rounded-full bg-acento"
+            style={estado === 'bloqueada' ? 'background-color: var(--bloqueo);' : undefined}
+          ></span>
+          <span>{t}</span>
+          <span class="sr-only">, tema {i + 1} de esta clase.</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

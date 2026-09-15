@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+// Mensaje claro y sobrio para contenido aún no impartido.
+const { titulo = 'Contenido no disponible' } = Astro.props;
+const { mensaje = 'Esta clase se abrirá después de la clase presencial. Podrás consultarla aquí unos días después.' } = Astro.props;
+---
+
+<div
+  role="note"
+  class="mx-auto mt-8 flex max-w-xl flex-col items-center gap-5 rounded-2xl bg-bloqueo-tinte p-8 text-center"
+>
+  <Icon name="lock" size={44} class="text-bloqueo" />
+  <h2 class="text-xl font-bold">{titulo}</h2>
+  <p class="text-tinta-suave">{mensaje}</p>
+  <a
+    href="/"
+    class="btn-acento inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 font-bold no-underline"
+  >
+    <Icon name="atras" size={22} />
+    Volver a la ruta de aprendizaje
+  </a>
+</div>
