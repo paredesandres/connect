@@ -11,58 +11,64 @@ type Props = {
 };
 
 const { numero, red, titulo, temas = [], estado } = Astro.props as Props;
+
+const temasVista = temas.slice(0, 4);
+const restantes = temas.length - temasVista.length;
 ---
 
-<div class="flex flex-col gap-3">
-  <p
-    class:list={[
-      'flex items-center gap-2 font-bold',
-      estado === 'bloqueada' ? 'text-bloqueo' : 'text-acento',
-    ]}
-  >
-    {estado === 'completada' && (
-      <>
-        <Icon name="checkCircle" size={24} />
-        <span>Completada</span>
-      </>
-    )}
-    {estado === 'actual' && (
-      <>
-        <span
-          aria-hidden="true"
-          class="flex size-5 items-center justify-center rounded-full bg-acento"
-        >
-          <span class="size-2 rounded-full bg-white dark:bg-[#1a1917]"></span>
-        </span>
-        <span>Clase de hoy</span>
-      </>
-    )}
-    {estado === 'bloqueada' && (
-      <>
-        <Icon name="lock" size={24} />
-        <span>Disponible próximamente</span>
-      </>
-    )}
-    <span aria-hidden="true" class="font-normal text-bloqueo">·</span>
-    <span class="text-sm font-normal text-bloqueo">Clase {numero}</span>
-  </p>
-
-  <h2 class="text-xl font-bold leading-snug sm:text-2xl">{titulo}</h2>
-  <p class="text-sm font-bold text-tinta-suave">{red}</p>
-
-  <ul class="mt-1 space-y-2">
+<div class="flex flex-col gap-4">
+  <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
     {
-      temas.map((t, i) => (
-        <li class="flex items-start gap-3 text-tinta">
+      estado === 'completada' && (
+        <span class="capsula capsula--completada">
+          <Icon name="checkCircle" size={16} />
+          Completada
+        </span>
+      )
+    }
+    {
+      estado === 'actual' && (
+        <span class="capsula capsula--actual">
+          <Icon name="play" size={14} />
+          Clase de hoy
+        </span>
+      )
+    }
+    {
+      estado === 'bloqueada' && (
+        <span class="capsula capsula--bloqueada">
+          <Icon name="lock" size={15} />
+          Próximamente
+        </span>
+      )
+    }
+    <p class="rumbo-card">Clase {numero} · {red}</p>
+  </div>
+
+  <h2 class="tarjeta-titulo">{titulo}</h2>
+
+  <ul class="space-y-2.5">
+    {
+      temasVista.map((t) => (
+        <li class="flex items-start gap-3 text-[0.9375rem]">
           <span
             aria-hidden="true"
-            class="mt-2.5 size-2.5 shrink-0 rounded-full bg-acento"
-            style={estado === 'bloqueada' ? 'background-color: var(--bloqueo);' : undefined}
+            class:list={[
+              'mt-2 size-2 shrink-0 rounded-full',
+              estado === 'bloqueada' ? 'bg-bloqueo' : 'bg-acento',
+            ]}
           ></span>
           <span>{t}</span>
-          <span class="sr-only">, tema {i + 1} de esta clase.</span>
         </li>
       ))
     }
   </ul>
+
+  {
+    restantes > 0 && (
+      <p class="mas-temas">
+        Y {restantes} {restantes === 1 ? 'tema' : 'temas'} más
+      </p>
+    )
+  }
 </div>

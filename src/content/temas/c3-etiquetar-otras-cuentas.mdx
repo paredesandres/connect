@@ -1,0 +1,35 @@
+---
+clase: 3
+orden: 7
+titulo: "Etiquetar otras cuentas (@)"
+resumen: "Cómo mencionar a alguien con el símbolo @ para que reciba un aviso de que lo nombraste."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Etiquetar (o mencionar) a alguien es nombrarlo dentro de un comentario o una publicación, usando el símbolo **@** seguido de su nombre de usuario. Esa persona recibe un aviso de que la mencionaste.
+
+<PostExample
+  tipo="mencionar"
+  nombre="Sofía Martínez"
+  usuario="@sofia_martinez"
+  boton="Ver cómo se etiqueta a una cuenta"
+/>
+
+<Pasos
+  pasos={[
+    'En el campo de texto, escriba el símbolo @ y empiece a escribir el nombre.',
+    'Aparece una lista con las cuentas que coinciden.',
+    'Toque la cuenta correcta y el nombre se inserta resaltado en el texto.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    La persona etiquetada recibe un aviso de que la mencionaste, igual que un timbre
+    que le avisa que pasó algo con su cuenta. Puedes etiquetar varias cuentas en el
+    mismo mensaje repitiendo el símbolo @.
+  </p>
+</Nota>

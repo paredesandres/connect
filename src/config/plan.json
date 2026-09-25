@@ -33,7 +33,6 @@
       "red": "TikTok",
       "titulo": "Exploración y uso básico",
       "temas": [
-        "Explorar la interfaz de TikTok",
         "Buscar y descubrir contenido",
         "Seguir cuentas",
         "Dar «Me gusta» a videos",
@@ -41,28 +40,16 @@
         "Compartir videos",
         "Utilizar hashtags (#)",
         "Etiquetar otras cuentas (@)",
-        "Opciones para crear y publicar contenido"
-      ],
-      "tarea": "Seleccionar un video sobre un tema que te interese. Darle «Me gusta», comentar y compartirlo."
-    },
-    {
-      "numero": 4,
-      "red": "TikTok",
-      "titulo": "Crear y publicar contenido",
-      "temas": [
+        "Crear y publicar contenido: opciones básicas",
         "Grabar un video",
         "Agregar texto",
-        "Agregar subtítulos",
-        "Utilizar sonidos o música",
         "Agregar hashtags",
-        "Etiquetar otras cuentas",
-        "Publicar un video",
-        "Compartir el video publicado"
+        "Publicar un video"
       ],
       "tarea": "Graba un video corto de 15 a 20 segundos expresando tu opinión sobre un tema que te interese. Agrega subtítulos y publícalo."
     },
     {
-      "numero": 5,
+      "numero": 4,
       "red": "YouTube",
       "titulo": "Explorar y publicar contenido",
       "temas": [
@@ -76,11 +63,10 @@
         "Crear un título",
         "Escribir una descripción",
         "Compartir el enlace del video"
-      ],
-      "tarea": "Sube un video un poco más largo donde expliques tu opinión sobre un tema que te interese. Escribe un título claro y descriptivo."
+      ]
     },
     {
-      "numero": 6,
+      "numero": 5,
       "red": "Facebook",
       "titulo": "Publicar e interactuar",
       "temas": [
@@ -90,24 +76,30 @@
         "Compartir una publicación",
         "Etiquetar a una persona",
         "Publicar en grupos",
-        "Configurar quién puede ver una publicación"
-      ],
-      "tarea": "Publica una opinión en Facebook utilizando texto, fotografía o video."
+        "Configurar quién puede ver una publicación (Público, Amigos, otras opciones de privacidad)"
+      ]
+    },
+    {
+      "numero": 6,
+      "red": "Práctica 1",
+      "titulo": "Cross-posting",
+      "temas": [
+        "Toma una opinión que tengas y publícala adaptada a cada red (tuit en X, video corto en TikTok, video explicativo en YouTube). El instructor acompaña ajustando el formato en cada plataforma."
+      ]
     },
     {
       "numero": 7,
       "red": "Inteligencia Artificial",
-      "titulo": "La IA como herramienta de apoyo",
+      "titulo": "Introducción a Inteligencia Artificial",
       "temas": [
         "¿Qué es la inteligencia artificial?",
         "¿Para qué puede utilizarse?",
-        "Conocer herramientas como ChatGPT y Claude",
+        "Herramientas como ChatGPT, Claude y otras aplicaciones de IA",
         "¿Qué es un prompt?",
-        "Cómo escribir una instrucción clara",
-        "Usar la IA para redactar y mejorar textos",
-        "Revisar y verificar la información generada"
-      ],
-      "tarea": "Usa una herramienta de IA para mejorar un texto de opinión que hayas escrito y compara el resultado con tu versión original."
+        "Cómo escribir una pregunta o instrucción clara para la IA",
+        "Usos: redactar un texto, mejorar una opinión, corregir errores, proponer diferentes formas de expresar una idea",
+        "Importancia de revisar y verificar la información generada por la IA"
+      ]
     },
     {
       "numero": 8,
@@ -117,8 +109,9 @@
         "Generar imágenes con inteligencia artificial",
         "Crear una imagen para acompañar una publicación",
         "Mejorar un texto utilizando IA",
-        "Verificar si la información de la IA es confiable",
-        "Adaptar una opinión a diferentes redes sociales"
+        "Verificar si la información proporcionada por la IA es confiable",
+        "Adaptar una misma opinión a diferentes redes sociales",
+        "Práctica final (mejorar texto con IA, crear imagen, adaptar contenido a varias redes, publicar)"
       ]
     }
   ]

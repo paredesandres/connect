@@ -1,0 +1,35 @@
+---
+clase: 3
+orden: 5
+titulo: "Compartir videos"
+resumen: "Cómo enviar un video a otra persona por WhatsApp, mensaje de texto u otra aplicación."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Si quieres que otra persona vea un video, toca el ícono de compartir ↗. Ahí puedes elegir enviarlo por WhatsApp, mensaje de texto u otra aplicación.
+
+<PostExample
+  tipo="compartir"
+  nombre="Sofía Martínez"
+  usuario="@sofia_martinez"
+  boton="Ver cómo se comparte un video"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono de compartir ↗, junto al video.',
+    'Se abre el menú con las opciones: WhatsApp, mensaje de texto u otras aplicaciones.',
+    'Elija la opción que prefiera y confirme el envío.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Compartir es una buena forma de recomendar contenido a la familia o a los amigos.
+    El video se envía con un enlace: la otra persona podrá verlo e incluso abrirlo
+    dentro de TikTok.
+  </p>
+</Nota>

@@ -1,0 +1,35 @@
+---
+clase: 3
+orden: 4
+titulo: "Comentar publicaciones"
+resumen: "Cómo escribir lo que piensas sobre un video con el ícono del globo de comentarios."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Puedes escribir lo que piensas sobre un video tocando el ícono del globo de comentarios 💬. Se abre un espacio para escribir tu mensaje, que queda visible debajo del video.
+
+<PostExample
+  tipo="comentar"
+  nombre="Sofía Martínez"
+  usuario="@sofia_martinez"
+  boton="Ver cómo se comenta un video"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono del globo de comentarios 💬, junto al video.',
+    'Aparece el espacio para escribir, con el cursor listo.',
+    'Escriba su mensaje y pulse «Publicar».',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Su comentario queda visible debajo del video para cualquiera que lo vea, así que
+    conviene escribir con respeto, como se haría cara a cara. Comentar también ayuda a la
+    persona que creó el video a saber qué opina su audiencia.
+  </p>
+</Nota>

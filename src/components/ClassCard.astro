@@ -16,26 +16,21 @@ const esEnlace = estado !== 'bloqueada';
 const href = `/clase/${numero}/`;
 ---
 
-<li class="relative mb-8 pl-12 last:mb-0 sm:pl-14">
-  <!-- Marcador sobre la línea vertical de la ruta -->
-  <span
-    aria-hidden="true"
-    class="absolute left-0 top-1 flex size-10 items-center justify-center rounded-full border border-superficie-borde bg-superficie shadow-sm sm:size-11"
-  >
-    {estado === 'completada' && <Icon name="checkCircle" size={26} class="text-acento" />}
-    {estado === 'actual' && (
-      <span class="flex size-4 rounded-full bg-acento">
-        <span class="m-auto size-2 rounded-full bg-white dark:bg-[#1a1917]"></span>
-      </span>
-    )}
-    {estado === 'bloqueada' && <Icon name="lock" size={24} class="text-bloqueo" />}
+<li class="relative mb-8 pl-12 last:mb-0" data-estado={estado}>
+  <span aria-hidden="true" class={`marcador marcador--${estado}`}>
+    {estado === 'completada' && <Icon name="check" size={24} />}
+    {estado === 'actual' && <span class="size-2.5 rounded-full bg-acento"></span>}
+    {estado === 'bloqueada' && <Icon name="lock" size={20} />}
   </span>
 
   {
     esEnlace ? (
       <a
         href={href}
-        class="tarjeta-clase block rounded-2xl border border-superficie-borde bg-superficie p-5 shadow-sm transition-colors hover:border-acento sm:p-6"
+        class:list={[
+          'tarjeta-clase p-5 sm:p-6',
+          estado === 'actual' && 'tarjeta-clase--actual',
+        ]}
         aria-label={`Ir a la clase ${numero}: ${titulo}`}
       >
         <CardContenido numero={numero} red={red} titulo={titulo} temas={temas} estado={estado} />
@@ -43,7 +38,7 @@ const href = `/clase/${numero}/`;
     ) : (
       <div
         aria-disabled="true"
-        class="tarjeta-clase rounded-2xl border border-superficie-borde bg-bloqueo-tinte p-5 sm:p-6"
+        class="tarjeta-clase tarjeta-clase--bloqueada p-5 sm:p-6"
       >
         <CardContenido numero={numero} red={red} titulo={titulo} temas={temas} estado={estado} />
       </div>

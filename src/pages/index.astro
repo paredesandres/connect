@@ -1,11 +1,41 @@
 ---
 import Layout from '../components/Layout.astro';
 import Timeline from '../components/Timeline.astro';
+import plan from '../config/plan.json';
+import progreso from '../config/progreso.json';
+
+const total = plan.clases.length;
+const actual = progreso.claseActual;
+const completadas = Math.max(0, actual - 1);
+const porcentaje = Math.round((completadas / total) * 100);
 ---
 
 <Layout titulo="Inicio" rutaActual="/">
-  <div class="space-y-8">
-    <h1 class="text-2xl font-bold sm:text-3xl">Tu ruta de aprendizaje</h1>
+  <header class="max-w-2xl">
+    <p class="rumbo">Curso · Clase {actual} de {total}</p>
+    <h1 class="titulo-pagina mt-3">Tu ruta de aprendizaje</h1>
+    <p class="subtitulo-pagina mt-3">
+      Repasa cada clase desde casa, practica los pasos y avanza a tu ritmo, una
+      semana a la vez.
+    </p>
+
+    <div class="mt-7 flex max-w-md items-center gap-4">
+      <div
+        class="h-1.5 flex-1 overflow-hidden rounded-full bg-superficie-borde"
+        aria-hidden="true"
+      >
+        <div
+          class="h-full rounded-full bg-acento"
+          style={`width:${porcentaje}%`}
+        ></div>
+      </div>
+      <p class="whitespace-nowrap text-sm font-semibold tabular-nums text-tinta-suave">
+        {completadas} de {total} clases completadas
+      </p>
+    </div>
+  </header>
+
+  <div class="mt-10 sm:mt-12">
     <Timeline />
   </div>
 </Layout>

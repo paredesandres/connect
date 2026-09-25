@@ -38,7 +38,7 @@ const siguiente = indice > -1 && indice < hermanos.length - 1 ? hermanos[indice 
   <nav aria-label="Ubicación actual" class="mb-8">
     <a
       href={`/clase/${numero}/`}
-      class="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 font-bold text-acento-texto no-underline hover:underline"
+      class="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 font-semibold text-acento-texto no-underline hover:underline"
     >
       <Icon name="atras" size={22} />
       Volver a la clase {numero}
@@ -49,10 +49,10 @@ const siguiente = indice > -1 && indice < hermanos.length - 1 ? hermanos[indice 
     accesible ? (
       <article>
         <header class="mb-8">
-          <p class="text-sm font-bold text-tinta-suave">
+          <p class="rumbo-card">
             Clase {numero} · {clase?.red} · {clase?.titulo}
           </p>
-          <h1 class="mt-2 text-2xl font-bold sm:text-3xl">{tema.data.titulo}</h1>
+          <h1 class="titulo-pagina mt-3">{tema.data.titulo}</h1>
         </header>
 
         <div class="contenido">
@@ -67,7 +67,7 @@ const siguiente = indice > -1 && indice < hermanos.length - 1 ? hermanos[indice 
             anterior ? (
               <a
                 href={`/clase/${numero}/${anterior.id}/`}
-                class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-superficie-borde bg-superficie px-4 py-3 font-bold text-tinta no-underline hover:border-acento"
+                class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-superficie-borde bg-superficie px-4 py-3 font-semibold text-tinta no-underline hover:border-acento"
               >
                 <Icon name="atras" size={22} />
                 <span>
@@ -83,7 +83,7 @@ const siguiente = indice > -1 && indice < hermanos.length - 1 ? hermanos[indice 
             siguiente && (
               <a
                 href={`/clase/${numero}/${siguiente.id}/`}
-                class="inline-flex min-h-12 items-center justify-end gap-2 rounded-xl border border-superficie-borde bg-superficie px-4 py-3 text-right font-bold text-tinta no-underline hover:border-acento"
+                class="inline-flex min-h-12 items-center justify-end gap-2 rounded-xl border border-superficie-borde bg-superficie px-4 py-3 text-right font-semibold text-tinta no-underline hover:border-acento"
               >
                 <span>
                   Tema siguiente

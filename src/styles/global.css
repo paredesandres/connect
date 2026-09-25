@@ -1,49 +1,72 @@
-@import "@fontsource/atkinson-hyperlegible/400.css";
-@import "@fontsource/atkinson-hyperlegible/700.css";
 @import "tailwindcss";
 
 /* Dark mode controlado por clase .dark (override manual con persistencia). */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ===================================================================
-   Tokens semánticos. Se invierten automáticamente bajo .dark.
-   `inline` hace que las utilities lean la variable en runtime.
+   Tokens semánticos — Sistema de color Apple (apple.com + SF UI).
+   Neutros grises (nunca beige), azul de sistema, "fill" como material.
+   Se invierten automáticamente bajo .dark.
    =================================================================== */
 :root {
-  --hueso: #faf7f1;
-  --tinta: #1c1b19;
-  --tinta-suave: #574f42;
-  --superficie: #ffffff;
-  --superficie-borde: #e4e0d8;
-  --acento: #2c5f63;
-  --acento-texto: #254e52;
-  --on-acento: #ffffff;
-  --acento-tinte: #eaf1f0;
-  --bloqueo: #6e6a5f;
-  --bloqueo-tinte: #f1eee7;
-  --me-gusta: #b23a33;
-  --foco-anillo: #8ab0b4;
+  --hueso: #f5f5f7;            /* apple.com page background */
+  --tinta: #1d1d1f;            /* #primaryText */
+  --tinta-suave: #6e6e73;      /* #secondaryLabel */
+  --superficie: #ffffff;       /* card surface */
+  --superficie-borde: #d2d2d7; /* separator (light) */
+  --acento: #0071e3;           /* systemBlue – acciones y estado */
+  --acento-texto: #0066cc;     /* enlaces in-content (Apple link) */
+  --on-acento: #ffffff;        /* texto sobre azul de sistema */
+  --acento-tinte: #e5f0fd;     /* fill azul tintado (≈ rgba azul .08) */
+  --bloqueo: #6e6e73;          /* contenido deshabilitado (gray) */
+  --bloqueo-tinte: #edf0f4;    /* fill gris secundario */
+  --me-gusta: #ff3b30;         /* systemRed */
+  --foco-anillo: #0071e3;
+
+  /* Movimiento: curvas propias, nunca genéricas del navegador.
+     `--ease-spring` simula damping natural (ligero overshoot) en la
+     vuelta del gesto de pulsación; `--ease-out` es la entrada rápida. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Sombras: suaves y contenidas, sobre neutros gris-azulados. */
+  --sombras-tarjeta: 0 1px 2px rgb(29 29 31 / 0.05), 0 2px 8px -1px rgb(29 29 31 / 0.06);
+  --sombras-tarjeta-flotante: 0 14px 34px -14px rgb(29 29 31 / 0.2);
 }
 
 .dark {
-  --hueso: #1a1917;
-  --tinta: #f3efe6;
-  --tinta-suave: #cfc8b9;
-  --superficie: #242220;
-  --superficie-borde: #3a382f;
-  --acento: #6fb6bb;
-  --acento-texto: #7cc4c9;
-  --on-acento: #13201f;
-  --acento-tinte: #22383a;
-  --bloqueo: #8f897c;
-  --bloqueo-tinte: #21211f;
-  --me-gusta: #e06a5e;
-  --foco-anillo: #6fb6bb;
+  --hueso: #000000;            /* systemBackground (dark) */
+  --tinta: #f5f5f7;            /* #primaryLabel */
+  --tinta-suave: #a1a1a6;      /* #secondaryLabel */
+  --superficie: #1c1c1e;       /* #secondarySystemGroupedBackground */
+  --superficie-borde: #3a3a3c; /* separator (dark) */
+  --acento: #0a84ff;           /* systemBlue (dark) */
+  --acento-texto: #2997ff;     /* enlaces in-content (dark) */
+  --on-acento: #ffffff;
+  --acento-tinte: #192b40;     /* fill azul tintado oscuro */
+  --bloqueo: #a1a1a6;          /* contenido deshabilitado (gray) */
+  --bloqueo-tinte: #2c2c2e;    /* fill gris secundario oscuro */
+  --me-gusta: #ff453a;         /* systemRed (dark) */
+  --foco-anillo: #0a84ff;
+}
+
+/* ===================================================================
+   Sombras: en modo claro = caída suave; en modo oscuro las sombras
+   negras desaparecen, así que el "flote" se apoya en un borde de luz
+   sutil + sombra profunda (Apple usa ring luminoso en UI oscura).
+   =================================================================== */
+.dark {
+  --sombras-tarjeta: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 8px -2px rgb(0 0 0 / 0.35);
+  --sombras-tarjeta-flotante: 0 0 0 1px rgb(255 255 255 / 0.04), 0 18px 44px -16px rgb(0 0 0 / 0.65);
 }
 
 @theme inline {
-  --font-sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI",
-    Helvetica, Arial, sans-serif;
+  /* Pila del sistema: SF Pro en Apple, Segoe/Helvetica en el resto.
+     Apple §15: la fuente del sistema ya trae optical sizing y
+     tablas de tracking afinadas; no se reemplaza sin motivo. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
 
   --color-hueso: var(--hueso);
   --color-tinta: var(--tinta);
@@ -85,7 +108,11 @@
     font-family: var(--font-sans);
     font-size: 1.125rem; /* 18px en mobile; nunca menos de 16px */
     line-height: 1.6;
+    letter-spacing: normal; /* SF: cuerpo cerca de 0; tracking solo en display */
+    font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   p {
@@ -98,16 +125,22 @@
   h4 {
     line-height: 1.25;
     text-wrap: balance;
+    font-optical-sizing: auto;
   }
 
+  /* La UI táctil no subraya; los enlaces "de lectura" sí. */
   a {
+    text-decoration: none;
+  }
+
+  .contenido a {
     color: var(--acento-texto);
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
   }
 
-  a:hover {
+  .contenido a:hover {
     text-decoration-thickness: 3px;
   }
 
@@ -136,12 +169,8 @@
   color: #ffffff;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
-}
-
-.dark .skip-link {
-  color: #142023;
 }
 
 .skip-link:focus {
@@ -157,7 +186,9 @@
 
 .contenido h2 {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
   margin-top: 2.5rem;
 }
 
@@ -167,7 +198,9 @@
 
 .contenido h3 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
   margin-top: 2rem;
 }
 
@@ -209,6 +242,274 @@
   .btn-acento:hover {
     background: var(--acento-texto);
   }
+
+  /* ----------------------------------------------------------------
+     Material de la cabecera: translúcido, "flota" sobre el contenido.
+     El borde inferior es un hairline suavizado, no una división dura.
+     ---------------------------------------------------------------- */
+  .cabecera-material {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    /* Material Apple: blanco translúcido con blur + saturación. */
+    background: color-mix(in srgb, var(--superficie) 74%, transparent);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid color-mix(in srgb, var(--superficie-borde) 55%, transparent);
+  }
+
+  .marca-sitio {
+    min-width: 0;
+    color: var(--tinta);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    transition: color 180ms var(--ease-out);
+  }
+
+  /* ----------------------------------------------------------------
+     Tipografía de precisión (SF Pro): el tracking y el leading cambian
+     con el tamaño. Display con tracking negativo y leading apretado;
+     la jerarquía de UI se construye en Semibold (600), no Bold.
+     ---------------------------------------------------------------- */
+  .titulo-pagina {
+    font-size: clamp(1.9rem, 1rem + 3.4vw, 3.25rem);
+    line-height: 1.07;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .subtitulo-pagina {
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--tinta-suave);
+    text-wrap: pretty;
+  }
+
+  .rumbo {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    color: var(--acento-texto);
+  }
+
+  .rumbo-card {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+    color: var(--tinta-suave);
+  }
+
+  .tarjeta-titulo {
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  .titulo-seccion {
+    font-size: 1.125rem;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  @media (min-width: 640px) {
+    .tarjeta-titulo {
+      font-size: 1.375rem;
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     Capsulas de estado: material ligero + color semántico, sin borde.
+     ---------------------------------------------------------------- */
+  .capsula {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 1.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .capsula--completada {
+    background: var(--acento-tinte);
+    color: var(--acento-texto);
+  }
+
+  .capsula--actual {
+    background: var(--acento);
+    color: var(--on-acento);
+  }
+
+  .capsula--bloqueada {
+    background: var(--bloqueo-tinte);
+    color: var(--bloqueo);
+  }
+
+  /* ----------------------------------------------------------------
+     Tarjeta de clase: pulsación con física de resorte.
+     Entrada rápida (ease-out 110ms) + vuelta con overshoot (spring),
+     interruptible gracias a que usa una transición retargetizable y
+     NO keyframes. Hover gated a punteros finos.
+     ---------------------------------------------------------------- */
+  .tarjeta-clase {
+    position: relative;
+    display: block;
+    min-width: 0;
+    border-radius: 1.25rem;
+    border: 1px solid var(--superficie-borde);
+    background: var(--superficie);
+    color: var(--tinta);
+    text-decoration: none;
+    box-shadow: var(--sombras-tarjeta);
+    transition:
+      transform 320ms var(--ease-spring),
+      border-color 250ms var(--ease-out),
+      box-shadow 250ms var(--ease-out),
+      background-color 250ms var(--ease-out);
+    will-change: transform;
+  }
+
+  .tarjeta-clase:active {
+    transform: scale(0.98);
+    transition:
+      transform 110ms var(--ease-out),
+      border-color 250ms var(--ease-out),
+      box-shadow 250ms var(--ease-out),
+      background-color 250ms var(--ease-out);
+  }
+
+  .tarjeta-clase--actual {
+    border-color: color-mix(in srgb, var(--acento) 45%, var(--superficie-borde));
+  }
+
+  .tarjeta-clase--bloqueada {
+    background: color-mix(in srgb, var(--superficie) 45%, var(--hueso));
+    box-shadow: none;
+    cursor: default;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .tarjeta-clase:hover {
+      border-color: color-mix(in srgb, var(--acento) 55%, var(--superficie-borde));
+      box-shadow: var(--sombras-tarjeta-flotante);
+    }
+
+    .tarjeta-clase--bloqueada:hover {
+      border-color: var(--superficie-borde);
+      box-shadow: none;
+    }
+
+    .marca-sitio:hover {
+      color: var(--acento-texto);
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     Control de cabecera (alternar tema): presión comprimida y resorte.
+     ---------------------------------------------------------------- */
+  .control-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--superficie-borde);
+    background: color-mix(in srgb, var(--superficie) 60%, transparent);
+    padding: 0 0.875rem;
+    font-weight: 600;
+    color: var(--tinta);
+    transition:
+      transform 320ms var(--ease-spring),
+      border-color 200ms var(--ease-out),
+      background-color 200ms var(--ease-out);
+  }
+
+  .control-toggle:active {
+    transform: scale(0.965);
+    transition:
+      transform 110ms var(--ease-out),
+      border-color 200ms var(--ease-out),
+      background-color 200ms var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .control-toggle:hover {
+      border-color: color-mix(in srgb, var(--acento) 45%, var(--superficie-borde));
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     Riel de la ruta: hairline estático + segmento de progreso que el
+     componente pinta hasta la clase actual (vanilla JS mínimo).
+     ---------------------------------------------------------------- */
+  .rail {
+    position: absolute;
+    left: 1.25rem;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    width: 1px;
+  }
+
+  .rail--borde {
+    background: color-mix(in srgb, var(--superficie-borde) 80%, transparent);
+  }
+
+  .rail--progreso {
+    top: 1.5rem;
+    bottom: auto;
+    height: 0;
+    background: var(--acento);
+  }
+
+  /* Marcador de clase (estado en la línea de la ruta) */
+  .marcador {
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+  }
+
+  .marcador--completada {
+    background: var(--acento);
+    color: var(--on-acento);
+  }
+
+  .marcador--actual {
+    background: var(--superficie);
+    border: 2px solid var(--acento);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--acento) 12%, transparent);
+    color: var(--acento);
+  }
+
+  .marcador--bloqueada {
+    background: var(--hueso);
+    border: 1px solid var(--superficie-borde);
+    color: var(--bloqueo);
+  }
+
+  .mas-temas {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--tinta-suave);
+  }
 }
 
 /* ===================================================================
@@ -225,5 +526,56 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ===================================================================
+   Materiales: respetar prefers-reduced-transparency (más sólido).
+   =================================================================== */
+@media (prefers-reduced-transparency: reduce) {
+  .cabecera-material {
+    background: var(--hueso);
+    backdrop-filter: none;
+  }
+
+  .control-toggle {
+    background: var(--superficie);
+  }
+}
+
+/* ===================================================================
+   Transiciones de vista: navegación fluida entre esta vista y el
+   detalle de clase. Fade + leve desplazamiento del "nuevo" root;
+   la salida es más rápida que la entrada (la entrada es la decisión,
+   la salida la respuesta del sistema).
+   =================================================================== */
+::view-transition-old(root) {
+  animation: salida-pagina 180ms var(--ease-out) both;
+}
+
+::view-transition-new(root) {
+  animation: entrada-pagina 340ms var(--ease-out) both;
+}
+
+@keyframes salida-pagina {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes entrada-pagina {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

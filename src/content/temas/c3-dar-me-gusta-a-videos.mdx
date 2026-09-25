@@ -1,0 +1,35 @@
+---
+clase: 3
+orden: 3
+titulo: "Dar «Me gusta» a videos"
+resumen: "Cómo mostrar que un video te gustó: el corazón se pinta de color y el número de «Me gusta» sube."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Si un video te gustó, tócalo indicándolo con el ícono del corazón ♥. El corazón se pinta de color y el número de «Me gusta» sube.
+
+<PostExample
+  tipo="like"
+  nombre="Recetas de la Abuela"
+  usuario="@abuela_cocina"
+  boton="Ver cómo se da «Me gusta»"
+/>
+
+<Pasos
+  pasos={[
+    'A la derecha del video verá el ícono de un corazón ♥.',
+    'Toque el corazón: se llena de color.',
+    'El número de «Me gusta» sube en la pantalla.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    El «me gusta» es la forma más sencilla de participar: un gesto para decir
+    «me gustó». El creador del video recibe una notificación de que su contenido
+    fue valorado.
+  </p>
+</Nota>

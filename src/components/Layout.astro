@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import sitio from '../config/sitio.json';
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -20,6 +21,7 @@ const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${si
     <meta name="description" content={descripcion} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <ClientRouter />
     <title>{tituloPagina}</title>
 
     <!-- Aplica el tema elegido antes de pintar, para evitar parpadeo. -->
@@ -43,17 +45,14 @@ const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${si
       Saltar al contenido principal
     </a>
 
-    <header
-      class="border-b border-superficie-borde bg-hueso"
-      style="background-color: var(--hueso)"
-    >
+    <header class="cabecera-material">
       <div
-        class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6"
+        class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
       >
         <a
           href="/"
           aria-current={rutaActual === '/' ? 'page' : undefined}
-          class="min-w-0 text-lg font-bold leading-tight text-tinta no-underline hover:underline sm:text-xl"
+          class="marca-sitio text-lg sm:text-xl"
         >
           {sitio.corto}
         </a>
@@ -61,7 +60,10 @@ const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${si
       </div>
     </header>
 
-    <main id="contenido-principal" class="mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10">
+    <main
+      id="contenido-principal"
+      class="mx-auto max-w-5xl px-4 pb-20 pt-10 sm:px-6 sm:pt-14"
+    >
       <slot />
     </main>
 

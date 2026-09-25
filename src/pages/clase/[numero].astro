@@ -32,7 +32,7 @@ const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clas
   <nav aria-label="Ubicación actual" class="mb-8">
     <a
       href="/"
-      class="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 font-bold text-acento-texto no-underline hover:underline"
+      class="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 font-semibold text-acento-texto no-underline hover:underline"
     >
       <Icon name="atras" size={22} />
       Volver a la ruta de aprendizaje
@@ -40,24 +40,22 @@ const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clas
   </nav>
 
   <header class="mb-8">
-    <p class="flex flex-wrap items-center gap-2 text-sm font-bold text-tinta-suave">
-      <span>Clase {clase.numero}</span>
-      <span aria-hidden="true">·</span>
-      <span>{clase.red}</span>
+    <p class="rumbo-card">
+      Clase {clase.numero} · {clase.red}
     </p>
-    <h1 class="mt-2 text-2xl font-bold sm:text-3xl">{clase.titulo}</h1>
+    <h1 class="titulo-pagina mt-3">{clase.titulo}</h1>
     {
       estado === 'actual' && (
-        <p class="btn-acento mt-4 inline-flex items-center gap-2 rounded-lg px-4 py-2 font-bold">
-          <Icon name="play" size={20} />
+        <p class="capsula capsula--actual mt-5">
+          <Icon name="play" size={16} />
           Clase de hoy
         </p>
       )
     }
     {
       estado === 'completada' && (
-        <p class="mt-4 inline-flex items-center gap-2 rounded-lg bg-acento-tinte px-4 py-2 font-bold text-acento-texto">
-          <Icon name="checkCircle" size={20} />
+        <p class="capsula capsula--completada mt-5">
+          <Icon name="checkCircle" size={18} />
           Clase completada
         </p>
       )
@@ -69,16 +67,16 @@ const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clas
       <Bloqueada mensaje="Esta clase todavía no se ha impartido. Estará disponible aquí unos días después de la clase presencial." />
     ) : temasClase.length > 0 ? (
       <>
-        <h2 class="text-lg font-bold">Los temas de esta clase</h2>
+        <h2 class="titulo-seccion">Los temas de esta clase</h2>
         <ul class="mt-5 space-y-4">
           {
             temasClase.map((tema) => (
               <li>
                 <a
                   href={`/clase/${clase.numero}/${tema.id}/`}
-                  class="block rounded-2xl border border-superficie-borde bg-superficie p-5 shadow-sm transition-colors hover:border-acento sm:p-6"
+                  class="tarjeta-clase p-5 sm:p-6"
                 >
-                  <p class="text-base font-bold text-acento-texto no-underline underline-offset-4 hover:underline">
+                  <p class="text-base font-semibold text-acento-texto no-underline underline-offset-4 hover:underline">
                     {tema.data.titulo}
                   </p>
                   {
@@ -103,14 +101,14 @@ const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clas
     ) : (
       /* Clase "actual": se acaba de impartir; agenda hasta que se escriba el detalle. */
       <>
-        <h2 class="text-lg font-bold">Lo que se vio en esta clase</h2>
+        <h2 class="titulo-seccion">Lo que se vio en esta clase</h2>
         <ol class="mt-5 space-y-4" aria-label="Temas de la clase de hoy">
           {
             clase.temas.map((t: string, i: number) => (
               <li class="flex items-start gap-4 rounded-2xl border border-superficie-borde bg-superficie p-5 sm:p-6">
                 <span
                   aria-hidden="true"
-                  class="flex size-9 shrink-0 items-center justify-center rounded-full bg-acento-tinte font-bold text-acento-texto"
+                  class="flex size-9 shrink-0 items-center justify-center rounded-full bg-acento-tinte font-semibold text-acento-texto"
                 >
                   {i + 1}
                 </span>

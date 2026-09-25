@@ -5,17 +5,20 @@ import Icon from './Icon.astro';
 <button
   id="alternar-tema"
   type="button"
-  class="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-superficie-borde bg-superficie px-3 font-bold text-tinta"
+  class="control-toggle"
   data-tema-toggle
 >
-  <span data-ico="sun"><Icon name="sun" size={26} /></span>
-  <span data-ico="luna" class="hidden"><Icon name="moon" size={26} /></span>
+  <span data-ico="sun"><Icon name="sun" size={22} /></span>
+  <span data-ico="luna" class="hidden"><Icon name="moon" size={22} /></span>
   <span data-tx class="whitespace-nowrap">Modo oscuro</span>
 </button>
 
 <script>
-  const boton = document.querySelector('[data-tema-toggle]');
-  if (boton) {
+  function conectarTema() {
+    const boton = document.querySelector<HTMLElement>('[data-tema-toggle]');
+    if (!boton || boton.dataset.listos) return;
+    boton.dataset.listos = '1';
+
     const parte = (sel: string) => boton.querySelector(sel);
     const iconoSol = parte('[data-ico="sun"]');
     const iconoLuna = parte('[data-ico="luna"]');
@@ -44,4 +47,9 @@ import Icon from './Icon.astro';
 
     sincronizar();
   }
+
+  // Con ClientRouter cada navegación pinta un botón nuevo; `astro:page-load`
+  // se dispara en la carga inicial y en cada transición de página.
+  document.addEventListener('astro:page-load', conectarTema);
+  conectarTema();
 </script>

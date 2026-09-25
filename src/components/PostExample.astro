@@ -95,11 +95,11 @@ const sugerencias = [
   <!-- Tarjeta de publicación (decorativa, no interactiva) -->
   <div class="p-5">
     <div class="flex items-center gap-4">
-      <span aria-hidden="true" class="flex size-12 shrink-0 items-center justify-center rounded-full btn-acento text-xl font-bold">
+      <span aria-hidden="true" class="flex size-12 shrink-0 items-center justify-center rounded-full btn-acento text-xl font-semibold">
         {inicial}
       </span>
       <div class="min-w-0">
-        <p class="truncate font-bold">{nombre}</p>
+        <p class="truncate font-semibold">{nombre}</p>
         <p class="truncate text-sm text-tinta-suave">{usuario} · {tiempo}</p>
       </div>
     </div>
@@ -149,11 +149,11 @@ const sugerencias = [
                     data-elegir={s.nombre}
                     class="flex w-full items-center gap-3 rounded-lg bg-hueso p-3 text-left"
                   >
-                    <span aria-hidden="true" class="flex size-10 shrink-0 items-center justify-center rounded-full btn-acento text-lg font-bold">
+                    <span aria-hidden="true" class="flex size-10 shrink-0 items-center justify-center rounded-full btn-acento text-lg font-semibold">
                       {s.nombre.charAt(0)}
                     </span>
                     <span class="min-w-0">
-                      <span class="block font-bold">{s.nombre}</span>
+                      <span class="block font-semibold">{s.nombre}</span>
                       <span class="block truncate text-sm text-tinta-suave">{s.usuario}</span>
                     </span>
                   </button>
@@ -174,19 +174,19 @@ const sugerencias = [
     }
 
     <!-- Botón que dispara la animación -->
-    <button type="button" class="demo-trigger mt-5 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg btn-acento px-6 font-bold">
+    <button type="button" class="demo-trigger mt-5 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg btn-acento px-6 font-semibold">
       <Icon name="play" size={24} />
       {boton}
     </button>
 
     <!-- Pasos numerados que acompañan la animación -->
     <div class="mt-6">
-      <p class="mb-3 font-bold">Así se hace, paso a paso:</p>
+      <p class="mb-3 font-semibold">Así se hace, paso a paso:</p>
       <ol class="space-y-3">
         {
           listaPasos.map((paso, i) => (
             <li class="flex items-start gap-4">
-              <span aria-hidden="true" class="flex size-8 shrink-0 items-center justify-center rounded-full bg-acento-tinte font-bold text-acento-texto">
+              <span aria-hidden="true" class="flex size-9 shrink-0 items-center justify-center rounded-full bg-acento-tinte font-semibold text-acento-texto">
                 {i + 1}
               </span>
               <span class="pt-0.5" data-pasos-texto>{paso}</span>

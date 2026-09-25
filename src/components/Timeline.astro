@@ -18,20 +18,45 @@ const clases: Array<ClasePlan & { estado: Estado }> = plan.clases.map((c) => ({
 }));
 ---
 
-<ol class="relative" aria-label="Ruta de aprendizaje del curso">
-  <span
-    aria-hidden="true"
-    class="absolute bottom-8 left-5 top-2 w-0.5 -translate-x-1/2 bg-superficie-borde"
-  ></span>
-  {
-    clases.map((c) => (
-      <ClassCard
-        numero={c.numero}
-        red={c.red}
-        titulo={c.titulo}
-        temas={c.temas}
-        estado={c.estado}
-      />
-    ))
+<div class="relative" data-timeline>
+  <span aria-hidden="true" class="rail rail--borde"></span>
+  <span aria-hidden="true" class="rail rail--progreso" data-rail-progreso></span>
+
+  <ol aria-label="Ruta de aprendizaje del curso">
+    {
+      clases.map((c) => (
+        <ClassCard
+          numero={c.numero}
+          red={c.red}
+          titulo={c.titulo}
+          temas={c.temas}
+          estado={c.estado}
+        />
+      ))
+    }
+  </ol>
+</div>
+
+<script>
+  let listo = false;
+
+  function ajustarRuta() {
+    const contenedor = document.querySelector<HTMLElement>('[data-timeline]');
+    const activa = contenedor?.querySelector<HTMLElement>('li[data-estado="actual"]');
+    const railProgreso = contenedor?.querySelector<HTMLElement>('[data-rail-progreso]');
+    if (!contenedor || !activa || !railProgreso) return;
+    railProgreso.style.height = `${Math.max(0, activa.offsetTop)}px`;
   }
-</ol>
+
+  // Con ClientRouter el DOM se reconstruye en cada navegación; `astro:page-load`
+  // se dispara en la carga inicial y al volver a esta página.
+  function conectarRuta() {
+    if (listo) return;
+    listo = true;
+    ajustarRuta();
+    window.addEventListener('resize', ajustarRuta, { passive: true });
+  }
+
+  document.addEventListener('astro:page-load', conectarRuta);
+  conectarRuta();
+</script>
