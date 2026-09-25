@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions';
 import sitio from '../config/sitio.json';
 import ThemeToggle from './ThemeToggle.astro';
 import Analytics from '@vercel/analytics/astro'
+import SpeedInsights from "@vercel/speed-insights/astro"
 
 const {
   titulo = 'Inicio',
@@ -81,5 +82,6 @@ const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${si
       import '../scripts/post-example.js';
     </script>
     <Analytics/>
+    <SpeedInsights/>
   </body>
 </html>
