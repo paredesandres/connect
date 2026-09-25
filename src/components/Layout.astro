@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import sitio from '../config/sitio.json';
 import ThemeToggle from './ThemeToggle.astro';
+import Analytics from '@vercel/analytics/astro'
 
 const {
   titulo = 'Inicio',
@@ -79,5 +80,6 @@ const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${si
     <script>
       import '../scripts/post-example.js';
     </script>
+    <Analytics/>
   </body>
 </html>
