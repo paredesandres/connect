@@ -1,0 +1,44 @@
+---
+clase: 4
+orden: 2
+titulo: "Suscribirse a un canal"
+resumen: "Recibir un aviso cada vez que un canal suba un video nuevo, con el botón «Suscribirse»."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+**Suscribirse** a un canal significa que usted recibirá un aviso cada vez que esa persona suba un video nuevo. Es como pedirle a un amigo que le avise: «cuando tengas algo nuevo, me lo cuentas».
+
+Puede suscribirse a los canales que más le gustan: uno de cocina, otro de historia, otro de su región. Y si alguno empieza a molestar, siempre puede cancelar la suscripción.
+
+<PostExample
+  tipo="suscribir"
+  nombre="Inglés fácil"
+  usuario="@inglesfacil"
+  tiempo="1,2 M de suscriptores"
+  boton="Ver cómo se suscribe a un canal"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el video o el nombre del canal para entrar a su página.',
+    'Toque el botón rojo «Suscribirse», debajo del nombre del canal.',
+    'El botón cambia de estado: ahora dice «Suscrito».',
+    'Toque la campana 🔔 para elegir si quiere ver todos los videos o solo los destacados.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <ul>
+    <li>
+      Suscribirse es <strong>gratis</strong> y no obliga a nada: se puede cancelar
+      cuando quiera tocando otra vez el botón.
+    </li>
+    <li>
+      Los videos de los canales a los que está suscrito llegan también a la
+      pestaña <strong>«Suscripciones»</strong>, en el menú de abajo.
+    </li>
+  </ul>
+</Nota>

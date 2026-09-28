@@ -1,0 +1,36 @@
+---
+clase: 5
+orden: 11
+titulo: "Compartir una publicación"
+resumen: "El ícono de compartir ↗ permite enviar la publicación por mensaje directo o ponerla en su historia."
+bloque: "Instagram"
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+El ícono de **compartir ↗** sirve para dos cosas: enviarle la publicación a una persona por mensaje directo, o publicarla en su propia historia para que la vean quienes la abran durante 24 horas.
+
+<PostExample
+  tipo="compartir"
+  nombre="Viajes por la Peña"
+  usuario="@viajesporlapeña"
+  boton="Ver cómo se comparte una publicación"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono de compartir ↗, debajo de la publicación.',
+    'Elija una persona y envíesela por mensaje directo, o',
+    'elija «Añadir a la historia» para publicarla en su propia historia.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Compartir por mensaje directo es como reenviar una foto en un grupo de
+    WhatsApp: llega solo a quien usted elija. Ponerla en su historia la hace visible
+    para sus seguidores, pero <strong>desaparece a las 24 horas</strong>.
+  </p>
+</Nota>

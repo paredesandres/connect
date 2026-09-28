@@ -9,6 +9,7 @@ const temas = defineCollection({
     orden: z.number().int().min(1),
     titulo: z.string(),
     resumen: z.string().default(''),
+    bloque: z.string().optional(),
   }),
 });
 

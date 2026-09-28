@@ -1,0 +1,34 @@
+---
+clase: 4
+orden: 7
+titulo: "Subir un video"
+resumen: "Los tres pasos para subir un video: elegirlo de la galería o grabarlo y continuar."
+---
+
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Subir un video es tan sencillo como enviar una foto por WhatsApp. Puede elegir uno que ya tenga en el celular o grabarlo en el momento.
+
+<Pasos
+  pasos={[
+    'Toque el ícono del signo «+» ➕, en la parte de abajo.',
+    'Elija «Subir video» (o toque el icono de cámara si prefiere grabarlo ahora).',
+    'Busque el video en su galería y selecciónelo.',
+    'Toque «Siguiente» para continuar y poder escribir el título y la descripción.',
+    'Al final, toque «Publicar» para que el video esté visible.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <ul>
+    <li>
+      Si el video es muy largo, la pantalla le dirá que espere un rato:
+      <strong>no apague el celular ni la aplicación</strong> mientras sube.
+    </li>
+    <li>
+      Antes de publicar, mire el video una vez. Si se grabó al revés o con la
+      cámara tapada, mejor repetirlo que lamentarlo después.
+    </li>
+  </ul>
+</Nota>

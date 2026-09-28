@@ -1,0 +1,39 @@
+---
+clase: 5
+orden: 3
+titulo: "Comentar y reaccionar a publicaciones"
+resumen: "El «Me gusta» con el pulgar, las reacciones ❤️ 😂 😮 😢 manteniendo presionado, y el espacio para comentar."
+bloque: "Facebook"
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Debajo de cada publicación hay dos cosas: el ícono de **«Me gusta» 👍** y un espacio para comentar.
+
+Si solo quiere decir que le gustó, un toque en el pulgar es suficiente. Pero si lo mantiene presionado, aparecen más reacciones: ❤️ me encanta, 😂 me hace gracia, 😮 me sorprende, 😢 me entristece. Así su respuesta dice justo lo que sintió.
+
+<PostExample
+  tipo="reaccion"
+  nombre="María López"
+  usuario="@maria_lopez"
+  boton="Ver cómo se elige una reacción"
+/>
+
+<Pasos
+  pasos={[
+    'Toque una vez el ícono de «Me gusta» 👍 para poner su aprobación.',
+    'O bien mantenga presionado el ícono, sin soltarlo, y elija una de las reacciones.',
+    'Para opinar con palabras, toque «Comentar» y escriba su mensaje.',
+    'Toque «Publicar» para enviar el comentario.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    La reacción se puede cambiar: si se arrepiente, vuelva a mantener presionado y
+    elija otra. Y como sus reacciones también las ven los demás, elija la que
+    realmente sienta, no la que le parezca más grande.
+  </p>
+</Nota>

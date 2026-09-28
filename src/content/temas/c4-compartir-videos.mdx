@@ -1,0 +1,38 @@
+---
+clase: 4
+orden: 5
+titulo: "Compartir videos"
+resumen: "Enviar el enlace de un video por WhatsApp, correo u otra aplicación con el ícono de compartir."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Junto al video hay un ícono de compartir ↗. Al tocarlo, YouTube le ofrece enviar el enlace por WhatsApp, por correo o por cualquier otra aplicación que tenga instalada.
+
+Es la manera más fácil de pasarle un video a un familiar: no tiene que copiar el endereço, solo tocar y elegir a quién.
+
+<PostExample
+  tipo="compartir"
+  nombre="Recetas fáciles"
+  usuario="@recetasfaciles"
+  boton="Ver cómo se comparte un video"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono de compartir ↗.',
+    'Aparecen las aplicaciones: WhatsApp, correo, y las que tenga instaladas.',
+    'Elija una y elija a la persona a quien quiere enviarlo.',
+    'Si prefiere el enlace escrito, elija «Copiar enlace».',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Compartir es gratis y no cambia nada en su cuenta: el video sigue siendo del
+    canal que lo publicó. Solo se está pasando el enlace, como cuando le pasa una
+    dirección a un vecino.
+  </p>
+</Nota>

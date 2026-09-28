@@ -44,6 +44,10 @@ npm run preview    # previsualizar el build
      ---
      ```
 
+     Campo opcional `bloque`: agrupa los temas de una clase en bloques con
+     subtítulo (se usa en la clase 5: `bloque: "Facebook"` / `bloque: "Instagram"`).
+     Los subtítulos solo se muestran si la clase tiene más de un bloque.
+
    - Puedes usar los componentes del sitio dentro del contenido:
 
      ```mdx
@@ -57,7 +61,10 @@ npm run preview    # previsualizar el build
      <PostExample tipo="like" boton="Ver cómo se da me gusta" />
      ```
 
-     Tipos de `PostExample`: `like`, `comentar`, `repost`, `compartir`, `mencionar`.
+     Tipos de `PostExample`: `like`, `comentar`, `repost`, `compartir`,
+     `mencionar`, `suscribir` (botón que cambia de estado), `dobleToque`
+     («Me gusta» con doble toque) y `reaccion` (reacciones al mantener
+     presionado).
 
 3. **Desbloquea la clase** en `src/config/progreso.json`:
 
@@ -74,11 +81,25 @@ npm run preview    # previsualizar el build
 
 `src/config/progreso.json` → `{ "claseActual": N }`.
 
-- `numero < N` → ✅ Completada (accesible).
-- `numero === N` → 🔵 Clase de hoy (destacada).
+- `numero < N` → ✅ Completada (accesible, con su tarea si la tiene).
+- `numero === N` → 🔵 Clase de hoy (destacada, contenido desarrollado).
 - `numero > N` → 🔒 Bloqueada (candado + texto «Disponible próximamente»), sin enlace.
 
 Sin usuarios ni lógica en el navegador.
+
+## Regla de contenido de una clase
+
+| Estado | ¿Se ve el listado de temas? | ¿Se desarrolla el contenido? | ¿Se muestra la tarea? |
+|---|---|---|---|
+| Completada | Sí | Sí | Sí |
+| Actual | Sí | Sí | No, todavía |
+| Bloqueada | Sí (vista previa, atenuada) | No | No |
+
+- Una clase **actual** se desarrolla igual que una completada: desde la clase 4 en
+  adelante, el contenido detallado existe desde el primer día.
+- La **tarea** (`tarea` en `plan.json`) se asigna durante la clase presencial, así
+  que solo se muestra cuando la clase pasa a estado «Completada». Mientras tanto
+  queda guardada, sin publicar.
 
 ## Estructura
 

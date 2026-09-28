@@ -1,0 +1,39 @@
+---
+clase: 5
+orden: 4
+titulo: "Compartir una publicación"
+resumen: "La opción «Compartir» permite volver a publicar algo en su perfil o enviarlo a alguien."
+bloque: "Facebook"
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Junto a «Me gusta» y «Comentar» está la opción **«Compartir»**. Con ella puede volver a publicar en su propio perfil algo que escribió otra persona, o enviárselo directamente a alguien.
+
+Compartir es como pasarle un artículo a un compañero: usted avisa de dónde viene y la persona decide si lo lee.
+
+<PostExample
+  tipo="compartir"
+  nombre="Cocina de la Abuela"
+  usuario="@cocinadeabuela"
+  boton="Ver cómo se comparte una publicación"
+/>
+
+<Pasos
+  pasos={[
+    'Debajo de la publicación, toque «Compartir».',
+    'Elija una de las opciones: «Compartir ahora» en su perfil, o enviarlo a un amigo por mensaje.',
+    'Si quiere, escriba una frase corta antes de compartir.',
+    'Toque «Compartir» para terminar.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Al compartir, la publicación original sigue siendo de quien la escribió:
+    usted solo la pasa. Si está de acuerdo, comparta; si no lo está, no hace falta
+    hacerlo. Compartir algo con lo que no se coincide no aporta nada.
+  </p>
+</Nota>

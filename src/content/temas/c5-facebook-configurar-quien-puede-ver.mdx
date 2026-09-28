@@ -1,0 +1,34 @@
+---
+clase: 5
+orden: 7
+titulo: "Configurar quién puede ver una publicación"
+resumen: "Elegir antes de publicar si lo verá todo el mundo, solo sus amigos o un grupo más reducido de personas."
+bloque: "Facebook"
+---
+
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Antes de publicar, Facebook le pregunta **quién puede ver esa publicación**. Es una decisión importante: define si lo ven cuatro personas o miles.
+
+- **Público**: cualquier persona en Facebook puede verlo.
+- **Amigos**: solo las personas que usted tiene agregadas como amigos.
+- **Otras opciones**: puede elegir un grupo más reducido, por ejemplo solo algunos amigos, o incluso solo usted mismo.
+
+<Pasos
+  pasos={[
+    'Escriba su publicación como de costumbre.',
+    'Antes de tocar «Publicar», toque el ícono que dice «Público» o «Amigos», junto a su nombre.',
+    'Elija la opción de privacidad que prefiera.',
+    'Toque «Publicar».',
+  ]}
+/>
+
+<Nota nombre="Para recordar" icono="advertencia">
+  <p>
+    Lo más prudente es empezar por <strong>«Amigos»</strong> para una publicación
+    personal. Si escribe un dato personal (su dirección, su teléfono, su salud),
+    use siempre la opción más restringida que exista. Una vez publicada, se puede
+    cambiar quién la ve, pero no se puede borrar lo que alguien ya copió.
+  </p>
+</Nota>

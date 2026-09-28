@@ -25,6 +25,23 @@ const temasClase = (await getCollection('temas', (t) => t.data.clase === clase.n
   (a, b) => a.data.orden - b.data.orden,
 );
 
+// Una clase puede dividir sus temas en bloques (por ejemplo, Facebook e
+// Instagram). Solo se muestran subtítulos cuando hay más de un bloque.
+const nombresBloque = [
+  ...new Set(temasClase.map((t) => t.data.bloque).filter((b): b is string => Boolean(b))),
+];
+const grupos =
+  nombresBloque.length > 1
+    ? nombresBloque.map((nombre) => ({
+        nombre,
+        temas: temasClase.filter((t) => t.data.bloque === nombre),
+      }))
+    : [{ nombre: '', temas: temasClase }];
+
+// La tarea se asigna durante la clase presencial: solo se muestra cuando la
+// clase pasa a estado "completada".
+const mostrarTarea = estado === 'completada' && Boolean(clase.tarea);
+
 const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clase.red}).`;
 ---
 
@@ -68,38 +85,40 @@ const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clas
     ) : temasClase.length > 0 ? (
       <>
         <h2 class="titulo-seccion">Los temas de esta clase</h2>
-        <ul class="mt-5 space-y-4">
-          {
-            temasClase.map((tema) => (
-              <li>
-                <a
-                  href={`/clase/${clase.numero}/${tema.id}/`}
-                  class="tarjeta-clase p-5 sm:p-6"
-                >
-                  <p class="text-base font-semibold text-acento-texto no-underline underline-offset-4 hover:underline">
-                    {tema.data.titulo}
-                  </p>
-                  {
-                    tema.data.resumen && (
-                      <p class="mt-2 text-tinta-suave">{tema.data.resumen}</p>
-                    )
-                  }
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-
         {
-          clase.tarea && (
-            <Tarea>
-              <p>{clase.tarea}</p>
-            </Tarea>
-          )
+          grupos.map((grupo, i) => (
+            <section class:list={[i === 0 ? 'mt-5' : 'mt-8']}>
+              {grupo.nombre && <h3 class="titulo-seccion mb-4 text-tinta-suave">{grupo.nombre}</h3>}
+              <ul class="space-y-4">
+                {grupo.temas.map((tema) => (
+                  <li>
+                    <a
+                      href={`/clase/${clase.numero}/${tema.id}/`}
+                      class="tarjeta-clase p-5 sm:p-6"
+                    >
+                      <p class="text-base font-semibold text-acento-texto no-underline underline-offset-4 hover:underline">
+                        {tema.data.titulo}
+                      </p>
+                      {tema.data.resumen && (
+                        <p class="mt-2 text-tinta-suave">{tema.data.resumen}</p>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
         }
+
+        {mostrarTarea && (
+          <Tarea>
+            <p>{clase.tarea}</p>
+          </Tarea>
+        )}
       </>
     ) : (
-      /* Clase "actual": se acaba de impartir; agenda hasta que se escriba el detalle. */
+      /* La clase se acaba de impartir y todavía no se escribió el detalle:
+         se muestra el listado de temas como vista previa. */
       <>
         <h2 class="titulo-seccion">Lo que se vio en esta clase</h2>
         <ol class="mt-5 space-y-4" aria-label="Temas de la clase de hoy">
@@ -123,13 +142,11 @@ const descripcion = `Repaso de la clase ${clase.numero}: ${clase.titulo} (${clas
           presencial, para repasar desde casa.
         </p>
 
-        {
-          clase.tarea && (
-            <Tarea>
-              <p>{clase.tarea}</p>
-            </Tarea>
-          )
-        }
+        {mostrarTarea && (
+          <Tarea>
+            <p>{clase.tarea}</p>
+          </Tarea>
+        )}
       </>
     )
   }

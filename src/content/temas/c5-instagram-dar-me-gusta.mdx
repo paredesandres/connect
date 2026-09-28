@@ -1,0 +1,39 @@
+---
+clase: 5
+orden: 9
+titulo: "Dar «Me gusta» (también con doble toque)"
+resumen: "El corazón ♥ debajo de la publicación, o dos toques seguidos sobre la foto o el video."
+bloque: "Instagram"
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Debajo de cada publicación hay un ícono de **corazón ♥**. Tóquelo y queda registrado su «Me gusta»: el corazón se llena de color y el contador sube.
+
+En Instagram hay una forma aún más rápida: **dar doble toque sobre la foto o el video**, sin tocar ningún botón. Los dos toques seguidos registran el «Me gusta» igual que el corazón.
+
+<PostExample
+  tipo="dobleToque"
+  nombre="Ana Gómez"
+  usuario="@ana_gomez"
+  boton="Ver cómo se da «Me gusta» con doble toque"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el corazón ♥ que está debajo de la publicación, o bien',
+    'dé dos toques seguidos, con el dedo, sobre la foto o el video.',
+    'El corazón se llena de color y el número de «Me gusta» sube.',
+    'Para quitarlo, toque otra vez el corazón.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    El doble toque es cómodo cuando está viendo publicaciones seguidas, porque no
+    hay que bajar el dedo hasta el botón. Es el gesto más usado de Instagram: cuando
+    ve aparecer un corazón grande flotando sobre una foto, fue eso.
+  </p>
+</Nota>

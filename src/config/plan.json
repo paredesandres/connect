@@ -63,11 +63,12 @@
         "Crear un título",
         "Escribir una descripción",
         "Compartir el enlace del video"
-      ]
+      ],
+      "tarea": "Sube un video un poco más largo donde expliques tu opinión sobre un tema que te interese. Escribe un título claro y descriptivo."
     },
     {
       "numero": 5,
-      "red": "Facebook",
+      "red": "Facebook e Instagram",
       "titulo": "Publicar e interactuar",
       "temas": [
         "Explorar la interfaz de Facebook",
@@ -76,7 +77,16 @@
         "Compartir una publicación",
         "Etiquetar a una persona",
         "Publicar en grupos",
-        "Configurar quién puede ver una publicación (Público, Amigos, otras opciones de privacidad)"
+        "Configurar quién puede ver una publicación",
+        "Publicar un video o una foto en Instagram",
+        "Dar «Me gusta» (también con doble toque)",
+        "Comentar una publicación de Instagram",
+        "Compartir una publicación de Instagram",
+        "Historias (stories)",
+        "Reels",
+        "Mensajes directos",
+        "Buscar en Instagram",
+        "Notificaciones"
       ]
     },
     {

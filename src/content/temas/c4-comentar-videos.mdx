@@ -1,0 +1,35 @@
+---
+clase: 4
+orden: 4
+titulo: "Comentar videos"
+resumen: "Escribir su opinión debajo del video y enviarla con el botón de enviar."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Debajo del video hay un espacio para escribir lo que usted piensa. Puede decir si le gustó, hacer una pregunta o añadir algo que el video no dijo.
+
+<PostExample
+  tipo="comentar"
+  nombre="Historia de los pueblos"
+  usuario="@historiadepueblos"
+  boton="Ver cómo se comenta un video"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono de comentar (la burbuja de diálogo 💬) o el recuadro que dice «Añade un comentario…».',
+    'Escriba su comentario.',
+    'Toque el botón «Comentar» o la flecha de enviar ➤ para publicarlo.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Los comentarios también se leen cuando usted publica, y por eso conviene
+    escribir como lo haría cara a cara: con respeto. Si ve un comentario que no le
+    gusta, puede señalarlo con los tres puntitos; no hace falta contestar.
+  </p>
+</Nota>

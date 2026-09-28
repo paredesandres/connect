@@ -1,0 +1,41 @@
+---
+clase: 5
+orden: 5
+titulo: "Etiquetar a una persona"
+resumen: "Escribir @ seguido del nombre de la persona para mencionarla en una publicación o un comentario."
+bloque: "Facebook"
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Al escribir una publicación o un comentario, puede escribir **@** seguido del nombre de la persona para **mencionarla**. Ella recibirá un aviso y podrá ver lo que escribió.
+
+<PostExample
+  tipo="mencionar"
+  nombre="María López"
+  usuario="@maria_lopez"
+  boton="Ver cómo se etiqueta a una persona"
+/>
+
+<Pasos
+  pasos={[
+    'En el campo de texto, escriba el símbolo @ y empiece a escribir el nombre.',
+    'Aparece una lista con las personas que coinciden con lo que escribe.',
+    'Toque la persona correcta y su nombre se inserta resaltado en el texto.',
+    'Siga escribiendo y publique.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <ul>
+    <li>
+      Etiquetar <strong>no</strong> es escribir el nombre con el símbolo «@» fuera del
+      texto: si lo pone solo, la persona no recibe ningún aviso.
+    </li>
+    <li>
+      Etiquetar tampoco hace que la persona sea su amiga: solo la menciona.
+    </li>
+  </ul>
+</Nota>

@@ -1,0 +1,36 @@
+---
+clase: 5
+orden: 10
+titulo: "Comentar una publicación"
+resumen: "El ícono del globo de comentarios 💬 debajo de la publicación: escribir el mensaje y enviarlo."
+bloque: "Instagram"
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Debajo de la publicación, junto al corazón, está el ícono del **globo de comentarios 💬**. Al tocarlo se abre el espacio para escribir su mensaje.
+
+<PostExample
+  tipo="comentar"
+  nombre="Club de Lectura Vecinal"
+  usuario="@club_lectura"
+  boton="Ver cómo se comenta una publicación"
+/>
+
+<Pasos
+  pasos={[
+    'Toque el ícono del globo de comentarios 💬.',
+    'Escriba su mensaje en el campo que aparece.',
+    'Toque «Publicar» para enviarlo.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Puede editar o borrar un comentario suyo con los tres puntitos que aparecen al
+    tocarlo. Y si alguien escribe algo que le molesta, elija «Reportar comentario»
+    dentro de esos mismos tres puntitos: no hace falta contestar.
+  </p>
+</Nota>

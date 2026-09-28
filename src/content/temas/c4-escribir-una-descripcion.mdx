@@ -1,0 +1,29 @@
+---
+clase: 4
+orden: 9
+titulo: "Escribir una descripción"
+resumen: "El texto un poco más largo que va debajo del título, donde se cuenta el detalle."
+---
+
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+La **descripción** es un texto un poco más largo, debajo del título. Sirve para contar con más detalle de qué trata el video y para que la gente lo encuentre al buscar.
+
+No hace falta escribir un texto largo: con dos o tres frases ya está.
+
+<Pasos
+  pasos={[
+    'Toque el recuadro de la descripción, debajo del título.',
+    'Escriba dos o tres frases: qué trata el video, por qué lo grabó y a quién puede interesarle.',
+    'Toque «Siguiente» para seguir con los ajustes.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    Puede escribir en la descripción las mismas palabras clave del título. YouTube
+    las usa para mostrar el video a quien lo busca. Es como poner un rótulo en la
+    puerta: dice de qué va la habitación.
+  </p>
+</Nota>

@@ -1,0 +1,35 @@
+---
+clase: 4
+orden: 3
+titulo: "Dar «Me gusta»"
+resumen: "El pulgar hacia arriba debajo del video: un toque para decir que te gustó."
+---
+
+import PostExample from '../../components/PostExample.astro';
+import Pasos from '../../components/Pasos.astro';
+import Nota from '../../components/Nota.astro';
+
+Debajo de cada video hay un ícono de **pulgar hacia arriba 👍**. Si el video le gustó, tóquelo: queda lleno de color y el número de «Me gusta» sube.
+
+<PostExample
+  tipo="like"
+  nombre="Cocina de la Abuela"
+  usuario="@cocinadeabuela"
+  boton="Ver cómo se da «Me gusta»"
+/>
+
+<Pasos
+  pasos={[
+    'Debajo del video, toque el ícono del pulgar hacia arriba 👍.',
+    'El pulgar se pinta de color: su «Me gusta» queda registrado.',
+    'Si se equivoca, tóquelo otra vez para quitarlo.',
+  ]}
+/>
+
+<Nota nombre="Para recordar">
+  <p>
+    El «Me gusta» no es solo un botón: es la forma más rápida de apoyar a quien
+    publica. En YouTube significa más que en otras redes, porque ayuda a que el video
+    lo vea más gente. Por eso se dice que un video «se hizo viral».
+  </p>
+</Nota>

@@ -76,6 +76,20 @@ function hidratar() {
         chip.classList.add('hidden');
         chip.setAttribute('aria-hidden', 'true');
       }
+
+      // Estados propios de los ejemplos nuevos.
+      caja('[data-cuerpo]')?.classList.remove('demo-doble-toque');
+      const pastilla = caja('[data-suscribir]');
+      if (pastilla) {
+        pastilla.textContent = 'Suscribirse';
+        pastilla.classList.remove('postex-suscribir--activo');
+      }
+      const fila = caja('[data-reacciones]');
+      fila?.classList.add('hidden');
+      fila
+        ?.querySelectorAll('[data-reaccion]')
+        .forEach((r) => r.classList.remove('postex-emoji--elegida', 'demo-rebote'));
+
       anunciar('');
     };
 
@@ -157,6 +171,73 @@ function hidratar() {
         return;
       }
 
+      if (tipo === 'suscribir') {
+        const pastilla = caja('[data-suscribir]');
+        anunciar('Paso 1: toca el botón rojo «Suscribirse».');
+        if (entretener()) await pausa(700);
+        if (pastilla) {
+          pastilla.textContent = '✓ Suscrito';
+          pastilla.classList.add('postex-suscribir--activo');
+        }
+        anunciar(
+          'Paso 2: el botón cambió de estado y ahora dice «Suscrito». Desde ese momento verás un aviso cada vez que el canal suba un video nuevo.',
+        );
+        return;
+      }
+
+      if (tipo === 'dobleToque') {
+        const cuerpo = caja('[data-cuerpo]');
+        anunciar(
+          'Paso 1: da dos toques seguidos sobre la foto o el video (también puedes tocar el corazón).',
+        );
+        if (cuerpo && entretener()) {
+          cuerpo.classList.add('demo-doble-toque');
+          await pausa(720);
+          cuerpo.classList.remove('demo-doble-toque');
+        }
+        const icono = caja('[data-accion="like"]');
+        icono?.classList.add('demo-destacado');
+        if (entretener()) {
+          icono?.classList.add('demo-rebote');
+          await pausa(650);
+          icono?.classList.remove('demo-rebote');
+        }
+        contadores.like.n += 1;
+        actualizarContador('like');
+        anunciar(
+          'Paso 2: el corazón se llenó de color y el contador de «me gusta» subió a ' +
+            contadores.like.n +
+            '.',
+        );
+        return;
+      }
+
+      if (tipo === 'reaccion') {
+        const fila = caja('[data-reacciones]');
+        const icono = caja('[data-accion="like"]');
+        anunciar('Paso 1: mantén presionado el ícono de «Me gusta», sin soltarlo.');
+        fila?.classList.remove('hidden');
+        if (entretener()) await pausa(1500);
+        const elegida =
+          fila?.querySelector('[data-reaccion="❤️"]') || fila?.querySelector('[data-reaccion]');
+        elegida?.classList.add('postex-emoji--elegida', 'demo-rebote');
+        icono?.classList.add('demo-destacado');
+        if (entretener()) await pausa(650);
+        elegida?.classList.remove('demo-rebote');
+        contadores.like.n += 1;
+        actualizarContador('like');
+        anunciar(
+          'Paso 2: eligió la reacción ' +
+            (elegida?.textContent ?? '') +
+            ' sin soltar el dedo y quedó registrada. El contador de «me gusta» subió a ' +
+            contadores.like.n +
+            '.',
+        );
+        elegida?.classList.remove('postex-emoji--elegida');
+        fila?.classList.add('hidden');
+        return;
+      }
+
       // mencionar
       const compo = caja('[data-compositor]');
       const campo = caja('[data-campo]');
@@ -175,6 +256,7 @@ function hidratar() {
           'Paso 2: al escribir el símbolo @ aparece la lista de cuentas sugeridas. Elige una tocándola o con el teclado.',
         );
       }
+      return;
     };
 
     const trigger = caja('.demo-trigger');
