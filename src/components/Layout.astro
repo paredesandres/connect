@@ -29,16 +29,33 @@ const tituloPagina = titulo === 'Inicio' ? `${sitio.curso}` : `${titulo} · ${si
     <!-- Aplica el tema elegido antes de pintar, para evitar parpadeo. -->
     <script is:inline>
       (function () {
-        try {
-          var valor = localStorage.getItem('tema-conecta');
-          var oscuro =
-            valor === 'oscuro'
-              ? true
-              : valor === 'claro'
-                ? false
-                : window.matchMedia('(prefers-color-scheme: dark)').matches;
-          document.documentElement.classList.toggle('dark', oscuro);
-        } catch (e) {}
+        function oscuroElegido() {
+          try {
+            var valor = localStorage.getItem('tema-conecta');
+            if (valor === 'oscuro') return true;
+            if (valor === 'claro') return false;
+          } catch (e) {
+            /* modo local inaccesible: se usa la preferencia del sistema */
+          }
+          return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        function aplicarTema() {
+          document.documentElement.classList.toggle('dark', oscuroElegido());
+        }
+
+        aplicarTema();
+
+        // Con transiciones de vista el router sustituye los atributos de <html>
+        // por los del documento entrante (allí la clase "dark" no está, porque la
+        // añade este mismo script en el navegador). Sin esto, el tema se perdía al
+        // navegar: se reinyecta antes del intercambio y se revisa después.
+        document.addEventListener('astro:before-swap', function (event) {
+          if (event.newDocument && oscuroElegido()) {
+            event.newDocument.documentElement.classList.add('dark');
+          }
+        });
+        document.addEventListener('astro:after-swap', aplicarTema);
       })();
     </script>
   </head>
